@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 
 import Loader from "../components/Loader";
 import data from "../userData";
-import { LEAD_TABS } from "../constants";
 import {
   HeaderData,
+  LeadTabsEnum,
   UserContextProviderProps,
   UserContextType,
 } from "../types";
@@ -18,7 +18,9 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   children,
 }) => {
   const [userData, setUserData] = useState<any>(null);
-  const [activeTab, setActiveTab] = useState<string>(LEAD_TABS["lead-details"]);
+  const [activeTab, setActiveTab] = useState<string>(
+    LeadTabsEnum["lead-details"]
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { leadId } = useParams<{ leadId: string }>();

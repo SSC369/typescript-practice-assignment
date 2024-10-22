@@ -6,11 +6,11 @@ import {
   MultiSelectLimitType,
   LeadViewPagePathType,
   UsersPagePathType,
-  FieldTypesType,
   OverviewShowLimitType,
   HomeRouteType,
   LeadTabsEnum,
   LeadTabsNavigateEnum,
+  FieldTypesEnum,
 } from "./types";
 
 const HEADER_OPTIONS: HeaderOptionsType = {
@@ -45,15 +45,16 @@ const LEAD_TABS_NAVIGATE: LeadTabsNavigateEnum[] = [
   LeadTabsNavigateEnum["history-log"],
 ];
 
-const FIELD_TYPES: FieldTypesType = {
-  CHECKBOX_GROUP: "CHECKBOX_GROUP",
-  DATE: "DATE",
-  MULTI_SELECT: "MULTI_SELECT",
-  PHONE_NUMBER: "PHONE_NUMBER",
-  LONG_TEXT: "LONG_TEXT",
-  URL: "URL",
-  STATUS: "STATUS",
-};
+const FIELD_TYPES: FieldTypesEnum[] = [
+  FieldTypesEnum.CHECKBOX_GROUP,
+  FieldTypesEnum.DATE,
+  FieldTypesEnum.MULTI_SELECT,
+  FieldTypesEnum.PHONE_NUMBER,
+  FieldTypesEnum.LONG_TEXT,
+  FieldTypesEnum.STATUS,
+  FieldTypesEnum.URL,
+];
+
 const DATE_FORMAT: DateFormatType = "DD MMM YYYY, HH:MM A";
 const FIELD_DATE_FORMAT: FieldDateFormatType = "DD MMM YYYY";
 const MULTI_SELECT_LIMIT: MultiSelectLimitType = 2;

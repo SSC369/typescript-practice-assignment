@@ -2,12 +2,13 @@ import dayjs from "dayjs";
 import React from "react";
 import { FaPhoneAlt, GoDotFill } from "../Icons";
 
-import { FIELD_DATE_FORMAT, FIELD_TYPES } from "../constants";
+import { FIELD_DATE_FORMAT } from "../constants";
 import FieldMultiSelect from "./FieldMultiSelect";
 import {
   CheckboxTextType,
   FieldPhoneNumberType,
   FieldPropsType,
+  FieldTypesEnum,
   StatusType,
 } from "../types";
 
@@ -56,19 +57,19 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
 
   const renderFieldValue: () => React.ReactNode = () => {
     switch (fieldType) {
-      case FIELD_TYPES.DATE:
+      case FieldTypesEnum.DATE:
         return <p>{dayjs(new Date(value)).format(FIELD_DATE_FORMAT)}</p>;
-      case FIELD_TYPES.CHECKBOX_GROUP:
+      case FieldTypesEnum.CHECKBOX_GROUP:
         return renderCheckBoxText(value);
-      case FIELD_TYPES.MULTI_SELECT:
+      case FieldTypesEnum.MULTI_SELECT:
         return renderMultiSelect(value);
-      case FIELD_TYPES.LONG_TEXT:
+      case FieldTypesEnum.LONG_TEXT:
         return <p className=" max-w-[200px] text-wrap">{value}</p>;
-      case FIELD_TYPES.PHONE_NUMBER:
+      case FieldTypesEnum.PHONE_NUMBER:
         return renderFieldPhoneNumber(value);
-      case FIELD_TYPES.URL:
+      case FieldTypesEnum.URL:
         return <p className="font-medium text-sky break-words">{value}</p>;
-      case FIELD_TYPES.STATUS:
+      case FieldTypesEnum.STATUS:
         return renderStatus(value);
       default:
         return <p className="font-medium break-words">{value}</p>;

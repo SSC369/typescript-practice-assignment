@@ -1,7 +1,7 @@
 import React from "react";
 
 // Field Types Enum
-enum FieldTypesEnum {
+export enum FieldTypesEnum {
   CHECKBOX_GROUP = "CHECKBOX_GROUP",
   DATE = "DATE",
   MULTI_SELECT = "MULTI_SELECT",
