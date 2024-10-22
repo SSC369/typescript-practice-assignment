@@ -57,21 +57,21 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
 
   const renderFieldValue: () => React.ReactNode = () => {
     switch (fieldType) {
-      case FieldTypesEnum.DATE:
+      case FieldTypesEnum.date:
         return (
           <p>{dayjs(new Date(value)).format(DateFormatEnum.fieldDateFormat)}</p>
         );
-      case FieldTypesEnum.CHECKBOX_GROUP:
+      case FieldTypesEnum.checkBoxGroup:
         return renderCheckBoxText(value);
-      case FieldTypesEnum.MULTI_SELECT:
+      case FieldTypesEnum.multiSelect:
         return renderMultiSelect(value);
-      case FieldTypesEnum.LONG_TEXT:
+      case FieldTypesEnum.longText:
         return <p className=" max-w-[200px] text-wrap">{value}</p>;
-      case FieldTypesEnum.PHONE_NUMBER:
+      case FieldTypesEnum.phoneNumber:
         return renderFieldPhoneNumber(value);
-      case FieldTypesEnum.URL:
+      case FieldTypesEnum.url:
         return <p className="font-medium text-sky break-words">{value}</p>;
-      case FieldTypesEnum.STATUS:
+      case FieldTypesEnum.status:
         return renderStatus(value);
       default:
         return <p className="font-medium break-words">{value}</p>;

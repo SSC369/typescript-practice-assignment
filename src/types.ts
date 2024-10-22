@@ -2,13 +2,13 @@ import React from "react";
 
 // Field Types Enum
 export enum FieldTypesEnum {
-  CHECKBOX_GROUP = "CHECKBOX_GROUP",
-  DATE = "DATE",
-  MULTI_SELECT = "MULTI_SELECT",
-  PHONE_NUMBER = "PHONE_NUMBER",
-  LONG_TEXT = "LONG_TEXT",
-  URL = "URL",
-  STATUS = "STATUS",
+  checkBoxGroup = "CHECKBOX_GROUP",
+  date = "DATE",
+  multiSelect = "MULTI_SELECT",
+  phoneNumber = "PHONE_NUMBER",
+  longText = "LONG_TEXT",
+  url = "URL",
+  status = "STATUS",
 }
 
 export enum ShowLimitEnum {
