@@ -5,11 +5,10 @@ import dayjs from "dayjs";
 import Assignees from "../components/Assignees";
 import Overview from "../components/Overview";
 import ToggleButton from "../components/ToggleButton";
-import { DATE_FORMAT } from "../constants";
-import { ReactFunctionType } from "../types";
+import { DateFormatEnum, ReactFunctionType } from "../types";
 
 const OverviewAssigneeSection: React.FC = () => {
-  const date = dayjs(new Date()).format(DATE_FORMAT);
+  const date = dayjs(new Date()).format(DateFormatEnum.dateFormat);
 
   const renderCreatedOn: ReactFunctionType = () => {
     return (

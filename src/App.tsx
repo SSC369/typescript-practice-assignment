@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import LeadPage from "./pages/LeadPage";
-import { LEAD_VIEW_PAGE_PATH, USERS_PAGE_PATH } from "./constants";
 import LeadDetails from "./pages/LeadDetails";
 import Activities from "./pages/Activities";
 import Documents from "./pages/Documents";
@@ -11,14 +10,14 @@ import Remarks from "./pages/Remarks";
 import HistoryLog from "./pages/HistoryLog";
 import Users from "./pages/Users";
 import { UserContextProvider } from "./context/userContext";
-import { LeadTabsNavigateEnum } from "./types";
+import { LeadTabsNavigateEnum, NavigationRoutesEnum } from "./types";
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path={LEAD_VIEW_PAGE_PATH + "/:leadId"}
+          path={NavigationRoutesEnum.leadViewPagePath + "/:leadId"}
           element={
             <UserContextProvider>
               <LeadPage />
@@ -47,7 +46,7 @@ const App: React.FC = () => {
             element={<HistoryLog />}
           />
         </Route>
-        <Route path={USERS_PAGE_PATH} element={<Users />} />
+        <Route path={NavigationRoutesEnum.usersPagePath} element={<Users />} />
       </Routes>
     </BrowserRouter>
   );

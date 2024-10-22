@@ -2,10 +2,10 @@ import dayjs from "dayjs";
 import React from "react";
 import { FaPhoneAlt, GoDotFill } from "../Icons";
 
-import { FIELD_DATE_FORMAT } from "../constants";
 import FieldMultiSelect from "./FieldMultiSelect";
 import {
   CheckboxTextType,
+  DateFormatEnum,
   FieldPhoneNumberType,
   FieldPropsType,
   FieldTypesEnum,
@@ -58,7 +58,9 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
   const renderFieldValue: () => React.ReactNode = () => {
     switch (fieldType) {
       case FieldTypesEnum.DATE:
-        return <p>{dayjs(new Date(value)).format(FIELD_DATE_FORMAT)}</p>;
+        return (
+          <p>{dayjs(new Date(value)).format(DateFormatEnum.fieldDateFormat)}</p>
+        );
       case FieldTypesEnum.CHECKBOX_GROUP:
         return renderCheckBoxText(value);
       case FieldTypesEnum.MULTI_SELECT:

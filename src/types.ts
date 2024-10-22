@@ -11,6 +11,12 @@ export enum FieldTypesEnum {
   STATUS = "STATUS",
 }
 
+export enum ShowLimitEnum {
+  assigneesShowLimit = 3,
+  overviewFieldsShowLimit = 3,
+  multiSelectShowLimit = 2,
+}
+
 // Lead Tabs Enum
 export enum LeadTabsEnum {
   "lead-details" = "lead-details",
@@ -30,6 +36,17 @@ export enum LeadTabsNavigateEnum {
   "history-log" = "history-log",
 }
 
+export enum DateFormatEnum {
+  dateFormat = "DD MMM YYYY, HH:MM A",
+  fieldDateFormat = "DD MMM YYYY",
+}
+
+export enum NavigationRoutesEnum {
+  homePagePath = "/",
+  leadViewPagePath = "/lead-view",
+  usersPagePath = "/users",
+}
+
 interface HeaderOptionType {
   name: string;
   bgColor: string;
@@ -42,27 +59,6 @@ interface HeaderOptionsType {
   remarks: HeaderOptionType;
   send: HeaderOptionType;
 }
-
-type AssigneesShowLimitType = number;
-type OverviewShowLimitType = number;
-type HomeRouteType = string;
-
-interface FieldTypesType {
-  [FieldTypesEnum.CHECKBOX_GROUP]: string;
-  [FieldTypesEnum.DATE]: string;
-  [FieldTypesEnum.MULTI_SELECT]: string;
-  [FieldTypesEnum.PHONE_NUMBER]: string;
-  [FieldTypesEnum.LONG_TEXT]: string;
-  [FieldTypesEnum.URL]: string;
-  [FieldTypesEnum.STATUS]: string;
-}
-
-type DateFormatType = string;
-type FieldDateFormatType = string;
-
-type MultiSelectLimitType = number;
-type LeadViewPagePathType = string;
-type UsersPagePathType = string;
 
 //toasts
 type ToastFunctionType = (text: string) => void;
@@ -170,15 +166,6 @@ export type {
   StageType,
   HeaderOptionType,
   HeaderOptionsType,
-  AssigneesShowLimitType,
-  DateFormatType,
-  FieldDateFormatType,
-  MultiSelectLimitType,
-  LeadViewPagePathType,
-  UsersPagePathType,
-  FieldTypesType,
-  OverviewShowLimitType,
-  HomeRouteType,
   ToastFunctionType,
   GetTabType,
   GetLogoType,

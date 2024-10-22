@@ -5,12 +5,11 @@ import { FiUser } from "react-icons/fi";
 import { v4 } from "uuid";
 
 import { UserContext } from "../context/userContext";
-import { ASSIGNEES_SHOW_LIMIT } from "../constants";
 import { showSuccessToast } from "../utils/toastUtils";
-import { ReactFunctionType } from "../types";
+import { ReactFunctionType, ShowLimitEnum } from "../types";
 
 const Assignees: React.FC = () => {
-  const [showLimit, setShowLimit] = useState(ASSIGNEES_SHOW_LIMIT);
+  const [showLimit, setShowLimit] = useState(ShowLimitEnum.assigneesShowLimit);
   const contextUserData = useContext(UserContext)!.userData;
   const assignees = contextUserData?.assignees;
 
@@ -52,7 +51,7 @@ const Assignees: React.FC = () => {
 
   const handleClickSeeMore: () => void = () => {
     if (showLimit === assignees.length) {
-      setShowLimit(ASSIGNEES_SHOW_LIMIT);
+      setShowLimit(ShowLimitEnum.assigneesShowLimit);
     } else {
       setShowLimit(assignees.length);
     }
@@ -66,7 +65,7 @@ const Assignees: React.FC = () => {
   };
 
   const renderSeeMoreButton: () => React.ReactNode = () => {
-    if (assignees.length === ASSIGNEES_SHOW_LIMIT) {
+    if (assignees.length === ShowLimitEnum.assigneesShowLimit) {
       return <></>;
     }
     if (showLimit < assignees.length) {

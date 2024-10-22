@@ -11,11 +11,16 @@ import { LuMoveLeft } from "react-icons/lu";
 import { v4 } from "uuid";
 
 import { UserContext } from "../context/userContext";
-import { HEADER_OPTIONS, USERS_PAGE_PATH } from "../constants";
+import { HEADER_OPTIONS } from "../constants";
 import { showSuccessToast } from "../utils/toastUtils";
 import HeaderOption from "./HeaderOption";
 import { getLogo } from "../utils/leadUtils";
-import { HeaderOptionsType, ReactFunctionType, StageType } from "../types";
+import {
+  HeaderOptionsType,
+  NavigationRoutesEnum,
+  ReactFunctionType,
+  StageType,
+} from "../types";
 
 const Header: React.FC = () => {
   const contextHeaderData = useContext(UserContext)!.headerData;
@@ -93,7 +98,7 @@ const Header: React.FC = () => {
   };
 
   const handleNavigateBack: () => void = () => {
-    navigate(USERS_PAGE_PATH);
+    navigate(NavigationRoutesEnum.usersPagePath);
   };
 
   return (

@@ -1,11 +1,14 @@
 import { v4 } from "uuid";
-import { MULTI_SELECT_LIMIT } from "../constants";
 import React from "react";
-import { ReactFunctionType } from "../types";
+
+import { ReactFunctionType, ShowLimitEnum } from "../types";
 
 const FieldMultiSelect: React.FC<{ value: string[] }> = ({ value }) => {
-  const multiSelectLimitData = value.slice(0, MULTI_SELECT_LIMIT);
-  const diff = value.length - MULTI_SELECT_LIMIT;
+  const multiSelectLimitData = value.slice(
+    0,
+    ShowLimitEnum.multiSelectShowLimit
+  );
+  const diff = value.length - ShowLimitEnum.multiSelectShowLimit;
 
   const renderCount: ReactFunctionType = () => {
     if (diff > 0) {

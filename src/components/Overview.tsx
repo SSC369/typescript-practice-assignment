@@ -2,21 +2,24 @@ import React, { useContext, useState } from "react";
 import { v4 } from "uuid";
 import { FaChevronDown } from "../Icons";
 
-import { OVERVIEW_SHOW_LIMIT } from "../constants";
 import { UserContext } from "../context/userContext";
 import Field from "./Field";
-import { OverviewFieldsType, ReactFunctionType } from "../types";
+import { OverviewFieldsType, ReactFunctionType, ShowLimitEnum } from "../types";
 
 const Overview: React.FC = () => {
-  const [overviewShowLimit, setOverViewShowLimit] =
-    useState(OVERVIEW_SHOW_LIMIT);
+  const [overviewShowLimit, setOverViewShowLimit] = useState(
+    ShowLimitEnum.overviewFieldsShowLimit
+  );
 
   const contextUserData = useContext(UserContext)!.userData;
   const { overviewFields } = contextUserData;
 
   let overviewLimitData: OverviewFieldsType[];
   if (overviewFields!.length > overviewShowLimit) {
-    overviewLimitData = overviewFields!.slice(0, OVERVIEW_SHOW_LIMIT);
+    overviewLimitData = overviewFields!.slice(
+      0,
+      ShowLimitEnum.overviewFieldsShowLimit
+    );
   } else {
     overviewLimitData = overviewFields;
   }
@@ -48,7 +51,7 @@ const Overview: React.FC = () => {
 
   const handleClickSeeMore: () => void = () => {
     if (overviewShowLimit === overviewFields.length) {
-      setOverViewShowLimit(OVERVIEW_SHOW_LIMIT);
+      setOverViewShowLimit(ShowLimitEnum.overviewFieldsShowLimit);
     } else {
       setOverViewShowLimit(overviewFields.length);
     }
@@ -62,7 +65,7 @@ const Overview: React.FC = () => {
   };
 
   const renderSeeMoreButton: ReactFunctionType = () => {
-    if (overviewFields.length === OVERVIEW_SHOW_LIMIT) {
+    if (overviewFields.length === ShowLimitEnum.overviewFieldsShowLimit) {
       return <></>;
     }
     if (overviewShowLimit <= overviewFields.length) {

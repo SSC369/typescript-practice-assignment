@@ -6,13 +6,13 @@ import users from "../userData";
 import { useNavigate } from "react-router-dom";
 import { getLogo } from "../utils/leadUtils";
 import { FaChevronDown } from "react-icons/fa";
-import { LEAD_VIEW_PAGE_PATH } from "../constants";
+import { NavigationRoutesEnum } from "../types";
 
 const Users: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick: (id: string) => void = (id) => {
-    navigate(LEAD_VIEW_PAGE_PATH + "/" + id);
+    navigate(NavigationRoutesEnum.leadViewPagePath + "/" + id);
   };
 
   return (
