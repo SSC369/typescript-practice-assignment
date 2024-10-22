@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 import { UserContext } from "../context/userContext";
 import { ASSIGNEES_SHOW_LIMIT } from "../constants";
 import { showSuccessToast } from "../utils/toastUtils";
+import { ReactFunctionType } from "../types";
 
 const Assignees: React.FC = () => {
   const [showLimit, setShowLimit] = useState(ASSIGNEES_SHOW_LIMIT);
@@ -38,7 +39,7 @@ const Assignees: React.FC = () => {
     );
   };
 
-  const renderAssignees = () => {
+  const renderAssignees: ReactFunctionType = () => {
     return (
       <ul className="flex flex-col gap-2">
         {assigneesLimitData.map((a) => {
@@ -49,7 +50,7 @@ const Assignees: React.FC = () => {
     );
   };
 
-  const handleClickSeeMore = () => {
+  const handleClickSeeMore: () => void = () => {
     if (showLimit === assignees.length) {
       setShowLimit(ASSIGNEES_SHOW_LIMIT);
     } else {
@@ -57,14 +58,14 @@ const Assignees: React.FC = () => {
     }
   };
 
-  const renderSeeMoreButtonText = () => {
+  const renderSeeMoreButtonText: () => string = () => {
     if (showLimit < assignees.length) {
       return "See More";
     }
     return "See Less";
   };
 
-  const renderSeeMoreButton = () => {
+  const renderSeeMoreButton: () => React.ReactNode = () => {
     if (assignees.length === ASSIGNEES_SHOW_LIMIT) {
       return <></>;
     }
@@ -85,11 +86,11 @@ const Assignees: React.FC = () => {
     }
   };
 
-  const handleAssigneesEdit = () => {
+  const handleAssigneesEdit: () => void = () => {
     showSuccessToast("Yet to be added");
   };
 
-  const renderAssigneesHeader = () => {
+  const renderAssigneesHeader: () => React.ReactNode = () => {
     return (
       <div className="flex  items-center justify-between text-slate-600">
         <h1 className="text-sm font-medium">Assignees</h1>

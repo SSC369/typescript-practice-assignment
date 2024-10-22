@@ -3,7 +3,7 @@ import { FaChevronDown } from "../Icons";
 
 import Gof from "./Gof";
 import { v4 } from "uuid";
-import { GofsType } from "../types";
+import { GofsType, ReactFunctionType } from "../types";
 
 const LeadDetailsField: React.FC<{ gof: GofsType }> = ({ gof }) => {
   const [showMore, setShowMore] = useState(false);
@@ -36,7 +36,7 @@ const LeadDetailsField: React.FC<{ gof: GofsType }> = ({ gof }) => {
     );
   };
 
-  const renderShowButton = () => {
+  const renderShowButton: ReactFunctionType = () => {
     return (
       <button>
         <FaChevronDown

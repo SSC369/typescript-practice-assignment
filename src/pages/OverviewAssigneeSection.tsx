@@ -6,11 +6,12 @@ import Assignees from "../components/Assignees";
 import Overview from "../components/Overview";
 import ToggleButton from "../components/ToggleButton";
 import { DATE_FORMAT } from "../constants";
+import { ReactFunctionType } from "../types";
 
 const OverviewAssigneeSection: React.FC = () => {
   const date = dayjs(new Date()).format(DATE_FORMAT);
 
-  const renderCreatedOn = () => {
+  const renderCreatedOn: ReactFunctionType = () => {
     return (
       <div className="flex justify-between items-center gap-2 bg-white p-4 rounded-2xl text-slate-600 text-sm font-medium">
         <p className="">Created on</p>
@@ -19,7 +20,7 @@ const OverviewAssigneeSection: React.FC = () => {
     );
   };
 
-  const renderPin = () => {
+  const renderPin: ReactFunctionType = () => {
     return (
       <div className="flex items-center gap-1 bg-white p-4 rounded-2xl text-slate-600">
         <TbPinned className="text-lg" />

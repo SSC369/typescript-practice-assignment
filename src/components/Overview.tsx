@@ -5,7 +5,7 @@ import { FaChevronDown } from "../Icons";
 import { OVERVIEW_SHOW_LIMIT } from "../constants";
 import { UserContext } from "../context/userContext";
 import Field from "./Field";
-import { OverviewFieldsType } from "../types";
+import { OverviewFieldsType, ReactFunctionType } from "../types";
 
 const Overview: React.FC = () => {
   const [overviewShowLimit, setOverViewShowLimit] =
@@ -14,7 +14,7 @@ const Overview: React.FC = () => {
   const contextUserData = useContext(UserContext)!.userData;
   const { overviewFields } = contextUserData;
 
-  let overviewLimitData;
+  let overviewLimitData: OverviewFieldsType[];
   if (overviewFields!.length > overviewShowLimit) {
     overviewLimitData = overviewFields!.slice(0, OVERVIEW_SHOW_LIMIT);
   } else {
@@ -36,7 +36,7 @@ const Overview: React.FC = () => {
     );
   };
 
-  const renderOverviewFields = () => {
+  const renderOverviewFields: ReactFunctionType = () => {
     return (
       <ul className="flex flex-col gap-4 ">
         {overviewLimitData.map((field: any) => {
@@ -46,7 +46,7 @@ const Overview: React.FC = () => {
     );
   };
 
-  const handleClickSeeMore = () => {
+  const handleClickSeeMore: () => void = () => {
     if (overviewShowLimit === overviewFields.length) {
       setOverViewShowLimit(OVERVIEW_SHOW_LIMIT);
     } else {
@@ -54,14 +54,14 @@ const Overview: React.FC = () => {
     }
   };
 
-  const renderSeeMoreButtonText = () => {
+  const renderSeeMoreButtonText: () => string = () => {
     if (overviewShowLimit < overviewFields.length) {
       return "See More";
     }
     return "See Less";
   };
 
-  const renderSeeMoreButton = () => {
+  const renderSeeMoreButton: ReactFunctionType = () => {
     if (overviewFields.length === OVERVIEW_SHOW_LIMIT) {
       return <></>;
     }

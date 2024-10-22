@@ -50,7 +50,7 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
     );
   };
 
-  const renderFieldValue = () => {
+  const renderFieldValue: () => React.ReactNode = () => {
     switch (fieldType) {
       case FIELD_TYPES.DATE:
         return <p>{dayjs(new Date(value)).format(FIELD_DATE_FORMAT)}</p>;

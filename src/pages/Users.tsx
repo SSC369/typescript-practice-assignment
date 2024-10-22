@@ -11,7 +11,7 @@ import { LEAD_VIEW_PAGE_PATH } from "../constants";
 const Users: React.FC = () => {
   const navigate = useNavigate();
 
-  const handleClick = (id: string) => {
+  const handleClick: (id: string) => void = (id) => {
     navigate(LEAD_VIEW_PAGE_PATH + "/" + id);
   };
 

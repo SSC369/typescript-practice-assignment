@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const ToggleSwitch: React.FC = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const handleToggle = () => {
+  const handleToggle: () => void = () => {
     setIsChecked(!isChecked);
   };
 

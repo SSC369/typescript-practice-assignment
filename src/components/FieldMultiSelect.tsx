@@ -1,12 +1,13 @@
 import { v4 } from "uuid";
 import { MULTI_SELECT_LIMIT } from "../constants";
 import React from "react";
+import { ReactFunctionType } from "../types";
 
 const FieldMultiSelect: React.FC<{ value: string[] }> = ({ value }) => {
   const multiSelectLimitData = value.slice(0, MULTI_SELECT_LIMIT);
   const diff = value.length - MULTI_SELECT_LIMIT;
 
-  const renderCount = () => {
+  const renderCount: ReactFunctionType = () => {
     if (diff > 0) {
       return <p className="text-slate-700">+{diff}</p>;
     }

@@ -29,7 +29,7 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
     }
   }, [leadId]);
 
-  const fetchData = async () => {
+  const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const leadData = data.find((lead) => lead.leadId === leadId);

@@ -1,3 +1,5 @@
+import React from "react";
+
 interface HeaderOptionType {
   name: string;
   bgColor: string;
@@ -138,6 +140,8 @@ interface UserContextProviderProps {
   children: React.ReactNode;
 }
 
+type ReactFunctionType = () => React.ReactNode;
+
 export type {
   StageType,
   HeaderOptionType,
@@ -171,4 +175,5 @@ export type {
   UserContextType,
   UserContextProviderProps,
   HeaderData,
+  ReactFunctionType,
 };

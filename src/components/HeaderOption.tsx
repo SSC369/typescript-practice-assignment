@@ -24,7 +24,7 @@ const HeaderOption: React.FC<{ option: HeaderOptionType }> = ({ option }) => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick: () => void = () => {
     showSuccessToast("Yet to be added");
   };
 

@@ -15,21 +15,21 @@ import { HEADER_OPTIONS, USERS_PAGE_PATH } from "../constants";
 import { showSuccessToast } from "../utils/toastUtils";
 import HeaderOption from "./HeaderOption";
 import { getLogo } from "../utils/leadUtils";
-import { HeaderOptionsType, StageType } from "../types";
+import { HeaderOptionsType, ReactFunctionType, StageType } from "../types";
 
 const Header: React.FC = () => {
   const contextHeaderData = useContext(UserContext)!.headerData;
   const contextFetchData = useContext(UserContext)!.fetchData;
   const navigate = useNavigate();
   const { name, stage } = contextHeaderData;
-  const logo = getLogo(name);
-  const options = Object.keys(HEADER_OPTIONS);
+  const logo: string = getLogo(name);
+  const options: string[] = Object.keys(HEADER_OPTIONS);
 
-  const handleRefresh = () => {
+  const handleRefresh: () => void = () => {
     contextFetchData();
   };
 
-  const renderHeaderOptions = () => {
+  const renderHeaderOptions: ReactFunctionType = () => {
     return (
       <ul className="flex items-center justify-between mt-2 gap-3">
         {options.map((option) => {
@@ -63,15 +63,15 @@ const Header: React.FC = () => {
     );
   };
 
-  const handleClose = () => {
+  const handleClose: () => void = () => {
     showSuccessToast("Yet to be added");
   };
 
-  const handleClickCopyLink = () => {
+  const handleClickCopyLink: () => void = () => {
     showSuccessToast("Yet to be added");
   };
 
-  const renderHeader = () => {
+  const renderHeader: ReactFunctionType = () => {
     return (
       <div className="flex items-center w-full justify-between mb-4">
         <div className="flex items-center gap-3">
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
     );
   };
 
-  const handleNavigateBack = () => {
+  const handleNavigateBack: () => void = () => {
     navigate(USERS_PAGE_PATH);
   };
 

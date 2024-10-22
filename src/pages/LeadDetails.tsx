@@ -3,12 +3,13 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import LeadDetailsField from "../components/LeadDetailsField";
 import { v4 } from "uuid";
+import { ReactFunctionType } from "../types";
 
 const LeadDetails: React.FC = () => {
   const contextUserData = useContext(UserContext)!.userData;
   const { gofs } = contextUserData;
 
-  const renderGofs = () => {
+  const renderGofs: ReactFunctionType = () => {
     return (
       <ul className="">
         {gofs?.map((gof) => {

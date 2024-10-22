@@ -1,6 +1,6 @@
 import React from "react";
 
-const Activities = () => {
+const Activities: React.FC = () => {
   return (
     <div className="">
       <div className="flex items-center gap-4 mt-2">
