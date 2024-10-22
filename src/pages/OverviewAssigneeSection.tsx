@@ -8,7 +8,7 @@ import ToggleButton from "../components/ToggleButton";
 import { DateFormatEnum, ReactFunctionType } from "../types";
 
 const OverviewAssigneeSection: React.FC = () => {
-  const date = dayjs(new Date()).format(DateFormatEnum.dateFormat);
+  const date = dayjs(new Date()).format(DateFormatEnum.dateFormat); //add type
 
   const renderCreatedOn: ReactFunctionType = () => {
     return (

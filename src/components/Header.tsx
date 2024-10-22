@@ -98,6 +98,7 @@ const Header: React.FC = () => {
   };
 
   const handleNavigateBack: () => void = () => {
+    // add a seperate interface
     navigate(NavigationRoutesEnum.usersPagePath);
   };
 

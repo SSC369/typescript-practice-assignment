@@ -18,7 +18,7 @@ export enum ShowLimitEnum {
 }
 
 // Lead Tabs Enum
-export enum LeadTabsEnum {
+export enum LeadTabsEnum { // use camel case
   "lead-details" = "lead-details",
   activities = "activities",
   remarks = "remarks",
@@ -87,17 +87,19 @@ type FieldValueType =
   | string
   | string[]
   | { countryCode: string; phoneNumber: string }
-  | number;
+  | number
+  | { color: string; status: string; bgColor: string }
+  | boolean;
 
 interface OverviewFieldsType {
-  fieldId: number;
+  fieldId: string;
   name: string;
   value: FieldValueType;
   fieldType: string;
 }
 
 interface GofFieldType {
-  fieldId: number;
+  fieldId: string;
   name: string;
   value: FieldValueType;
   fieldType: string;
@@ -125,7 +127,7 @@ interface PhoneNumberValueType {
 
 interface FieldPropsType {
   value: any;
-  fieldType: string;
+  fieldType: string; // add enum here
 }
 
 interface StatusColorType {

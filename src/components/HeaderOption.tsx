@@ -10,6 +10,7 @@ const HeaderOption: React.FC<{ option: HeaderOptionType }> = ({ option }) => {
   const renderIcon: (option: HeaderOptionType) => React.ReactNode = (
     option
   ) => {
+    //remove and option and add option name
     switch (option) {
       case HEADER_OPTIONS.call:
         return <IoIosCall className="text-xl" color={option.color} />;

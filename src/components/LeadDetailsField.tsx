@@ -6,7 +6,7 @@ import { v4 } from "uuid";
 import { GofsType, ReactFunctionType } from "../types";
 
 const LeadDetailsField: React.FC<{ gof: GofsType }> = ({ gof }) => {
-  const [showMore, setShowMore] = useState(false);
+  const [showMore, setShowMore] = useState(false); //add type
   const { name } = gof;
 
   const renderGof: (gof: GofsType) => React.ReactNode = (gof) => {

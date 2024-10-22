@@ -73,8 +73,8 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
         return <p className="font-medium text-sky break-words">{value}</p>;
       case FieldTypesEnum.status:
         return renderStatus(value);
-      default:
-        return <p className="font-medium break-words">{value}</p>;
+      default: // define all cases here
+        return <p className="font-medium break-words">{value}</p>; // throw error here
     }
   };
 

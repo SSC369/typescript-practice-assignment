@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 import React from "react";
 
 import { ReactFunctionType, ShowLimitEnum } from "../types";
-
+// add type into types.ts
 const FieldMultiSelect: React.FC<{ value: string[] }> = ({ value }) => {
   const multiSelectLimitData = value.slice(
     0,

@@ -21,6 +21,7 @@ const LeadTabs = () => {
   const navigate = useNavigate();
 
   const leadTabs = LEAD_TABS;
+  //add enum here
   const renderTabIcon: (tab: string) => React.ReactNode = (tab) => {
     switch (tab) {
       case LeadTabsEnum["lead-details"]:
