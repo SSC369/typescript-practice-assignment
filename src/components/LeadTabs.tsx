@@ -10,68 +10,72 @@ import {
   TbHistory,
 } from "../Icons";
 
-import { LEAD_TABS, LEAD_TABS_NAVIGATE } from "../constants";
+import { LEAD_TABS } from "../constants";
 import { UserContext } from "../context/userContext";
 import { getTab } from "../utils/leadUtils";
-import { LeadTabsNavigateType } from "../types";
+import { LeadTabsEnum, LeadTabsNavigateEnum } from "../types";
 
 const LeadTabs = () => {
   const activeTab = useContext(UserContext)!.activeTab;
   const setActiveTab = useContext(UserContext)!.setActiveTab;
   const navigate = useNavigate();
 
-  const leadTabs = Object.keys(LEAD_TABS);
+  const leadTabs = LEAD_TABS;
   const renderTabIcon: (tab: string) => React.ReactNode = (tab) => {
     switch (tab) {
-      case LEAD_TABS["lead-details"]:
+      case LeadTabsEnum["lead-details"]:
         return (
           <CgProfile
             className={`text-xl  ${
-              activeTab === LEAD_TABS["lead-details"]
+              activeTab === LeadTabsEnum["lead-details"]
                 ? "text-sky"
                 : "text-[#98A2B3]"
             }`}
           />
         );
-      case LEAD_TABS.activities:
+      case LeadTabsEnum.activities:
         return (
           <BsActivity
             className={`text-xl  ${
-              activeTab === LEAD_TABS.activities ? "text-sky" : "text-[#98A2B3]"
-            }`}
-          />
-        );
-      case LEAD_TABS.remarks:
-        return (
-          <LuFileEdit
-            className={`text-xl  ${
-              activeTab === LEAD_TABS.remarks ? "text-sky" : "text-[#98A2B3]"
-            }`}
-          />
-        );
-      case LEAD_TABS.documents:
-        return (
-          <IoDocumentTextOutline
-            className={`text-xl  ${
-              activeTab === LEAD_TABS.documents ? "text-sky" : "text-[#98A2B3]"
-            }`}
-          />
-        );
-      case LEAD_TABS["call-log"]:
-        return (
-          <IoIosCall
-            className={`text-xl  ${
-              activeTab === LEAD_TABS["call-log"]
+              activeTab === LeadTabsEnum.activities
                 ? "text-sky"
                 : "text-[#98A2B3]"
             }`}
           />
         );
-      case LEAD_TABS["history-log"]:
+      case LeadTabsEnum.remarks:
+        return (
+          <LuFileEdit
+            className={`text-xl  ${
+              activeTab === LeadTabsEnum.remarks ? "text-sky" : "text-[#98A2B3]"
+            }`}
+          />
+        );
+      case LeadTabsEnum.documents:
+        return (
+          <IoDocumentTextOutline
+            className={`text-xl  ${
+              activeTab === LeadTabsEnum.documents
+                ? "text-sky"
+                : "text-[#98A2B3]"
+            }`}
+          />
+        );
+      case LeadTabsEnum["call-log"]:
+        return (
+          <IoIosCall
+            className={`text-xl  ${
+              activeTab === LeadTabsEnum["call-log"]
+                ? "text-sky"
+                : "text-[#98A2B3]"
+            }`}
+          />
+        );
+      case LeadTabsEnum["history-log"]:
         return (
           <TbHistory
             className={`text-xl  ${
-              activeTab === LEAD_TABS["history-log"]
+              activeTab === LeadTabsEnum["history-log"]
                 ? "text-sky"
                 : "text-[#98A2B3]"
             }`}
@@ -83,7 +87,9 @@ const LeadTabs = () => {
   };
 
   const handleTabClick: (tab: string) => void = (tab) => {
-    navigate(LEAD_TABS_NAVIGATE[tab as keyof LeadTabsNavigateType]);
+    const navigateTab =
+      LeadTabsNavigateEnum[tab as keyof typeof LeadTabsNavigateEnum];
+    navigate(navigateTab);
     setActiveTab(tab);
   };
 

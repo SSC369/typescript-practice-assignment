@@ -1,7 +1,5 @@
 import {
   HeaderOptionsType,
-  LeadTabsNavigateType,
-  LeadTabsType,
   AssigneesShowLimitType,
   DateFormatType,
   FieldDateFormatType,
@@ -11,6 +9,8 @@ import {
   FieldTypesType,
   OverviewShowLimitType,
   HomeRouteType,
+  LeadTabsEnum,
+  LeadTabsNavigateEnum,
 } from "./types";
 
 const HEADER_OPTIONS: HeaderOptionsType = {
@@ -27,23 +27,23 @@ const HOME_ROUTE: HomeRouteType = "/";
 const LEAD_VIEW_PAGE_PATH: LeadViewPagePathType = "/lead-view";
 const USERS_PAGE_PATH: UsersPagePathType = "/users";
 
-const LEAD_TABS: LeadTabsType = {
-  "lead-details": "lead-details",
-  activities: "activities",
-  remarks: "remarks",
-  documents: "documents",
-  "call-log": "call-log",
-  "history-log": "history-log",
-};
+const LEAD_TABS: LeadTabsEnum[] = [
+  LeadTabsEnum["lead-details"],
+  LeadTabsEnum.activities,
+  LeadTabsEnum["call-log"],
+  LeadTabsEnum.documents,
+  LeadTabsEnum.remarks,
+  LeadTabsEnum["history-log"],
+];
 
-const LEAD_TABS_NAVIGATE: LeadTabsNavigateType = {
-  "lead-details": "",
-  activities: "activities",
-  remarks: "remarks",
-  documents: "documents",
-  "call-log": "call-log",
-  "history-log": "history-log",
-};
+const LEAD_TABS_NAVIGATE: LeadTabsNavigateEnum[] = [
+  LeadTabsNavigateEnum["lead-details"],
+  LeadTabsNavigateEnum.activities,
+  LeadTabsNavigateEnum["call-log"],
+  LeadTabsNavigateEnum.documents,
+  LeadTabsNavigateEnum.remarks,
+  LeadTabsNavigateEnum["history-log"],
+];
 
 const FIELD_TYPES: FieldTypesType = {
   CHECKBOX_GROUP: "CHECKBOX_GROUP",

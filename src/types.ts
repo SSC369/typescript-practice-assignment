@@ -1,5 +1,35 @@
 import React from "react";
 
+// Field Types Enum
+enum FieldTypesEnum {
+  CHECKBOX_GROUP = "CHECKBOX_GROUP",
+  DATE = "DATE",
+  MULTI_SELECT = "MULTI_SELECT",
+  PHONE_NUMBER = "PHONE_NUMBER",
+  LONG_TEXT = "LONG_TEXT",
+  URL = "URL",
+  STATUS = "STATUS",
+}
+
+// Lead Tabs Enum
+export enum LeadTabsEnum {
+  "lead-details" = "lead-details",
+  "activities" = "activities",
+  "remarks" = "remarks",
+  "documents" = "documents",
+  "call-log" = "call-log",
+  "history-log" = "history-log",
+}
+
+export enum LeadTabsNavigateEnum {
+  "lead-details" = "",
+  "activities" = "activities",
+  "remarks" = "remarks",
+  "documents" = "documents",
+  "call-log" = "call-log",
+  "history-log" = "history-log",
+}
+
 interface HeaderOptionType {
   name: string;
   bgColor: string;
@@ -17,26 +47,16 @@ type AssigneesShowLimitType = number;
 type OverviewShowLimitType = number;
 type HomeRouteType = string;
 
-interface LeadTabsType {
-  "lead-details": string;
-  activities: string;
-  remarks: string;
-  documents: string;
-  "call-log": string;
-  "history-log": string;
-}
-
-interface LeadTabsNavigateType extends LeadTabsType {}
-
 interface FieldTypesType {
-  CHECKBOX_GROUP: string;
-  DATE: string;
-  MULTI_SELECT: string;
-  PHONE_NUMBER: string;
-  LONG_TEXT: string;
-  URL: string;
-  STATUS: string;
+  [FieldTypesEnum.CHECKBOX_GROUP]: string;
+  [FieldTypesEnum.DATE]: string;
+  [FieldTypesEnum.MULTI_SELECT]: string;
+  [FieldTypesEnum.PHONE_NUMBER]: string;
+  [FieldTypesEnum.LONG_TEXT]: string;
+  [FieldTypesEnum.URL]: string;
+  [FieldTypesEnum.STATUS]: string;
 }
+
 type DateFormatType = string;
 type FieldDateFormatType = string;
 
@@ -54,8 +74,6 @@ interface LoaderTypes {
   width?: number;
 }
 
-interface UserContextProviderType {}
-
 interface StageType {
   name: string;
   color: string;
@@ -69,17 +87,23 @@ interface AssigneeType {
   lastUpdated: string;
 }
 
+type FieldValueType =
+  | string
+  | string[]
+  | { countryCode: string; phoneNumber: string }
+  | number;
+
 interface OverviewFieldsType {
   fieldId: number;
   name: string;
-  value: string | string[] | { countryCode: string; phoneNumber: string };
+  value: FieldValueType;
   fieldType: string;
 }
 
 interface GofFieldType {
   fieldId: number;
   name: string;
-  value: string | string[] | { countryCode: string; phoneNumber: string };
+  value: FieldValueType;
   fieldType: string;
 }
 
@@ -147,8 +171,6 @@ export type {
   HeaderOptionType,
   HeaderOptionsType,
   AssigneesShowLimitType,
-  LeadTabsNavigateType,
-  LeadTabsType,
   DateFormatType,
   FieldDateFormatType,
   MultiSelectLimitType,
@@ -161,7 +183,6 @@ export type {
   GetTabType,
   GetLogoType,
   LoaderTypes,
-  UserContextProviderType,
   UsersLeadDataType,
   OverviewFieldsType,
   GofsType,
@@ -176,4 +197,5 @@ export type {
   UserContextProviderProps,
   HeaderData,
   ReactFunctionType,
+  FieldValueType,
 };

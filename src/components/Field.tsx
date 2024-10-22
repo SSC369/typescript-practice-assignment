@@ -50,6 +50,10 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
     );
   };
 
+  const renderMultiSelect: (value: string[]) => React.ReactNode = (value) => {
+    return <FieldMultiSelect value={value} />;
+  };
+
   const renderFieldValue: () => React.ReactNode = () => {
     switch (fieldType) {
       case FIELD_TYPES.DATE:
@@ -57,7 +61,7 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
       case FIELD_TYPES.CHECKBOX_GROUP:
         return renderCheckBoxText(value);
       case FIELD_TYPES.MULTI_SELECT:
-        return <FieldMultiSelect value={value} />;
+        return renderMultiSelect(value);
       case FIELD_TYPES.LONG_TEXT:
         return <p className=" max-w-[200px] text-wrap">{value}</p>;
       case FIELD_TYPES.PHONE_NUMBER:
