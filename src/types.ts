@@ -63,8 +63,7 @@ interface HeaderOptionsType {
 //toasts
 type ToastFunctionType = (text: string) => void;
 type GetLogoType = (name: string) => string;
-type GetTabType = GetLogoType & {}; // Extending a type via intersections
-
+type GetTabType = GetLogoType;
 interface LoaderTypes {
   height?: number;
   width?: number;
@@ -95,14 +94,14 @@ interface OverviewFieldsType {
   fieldId: string;
   name: string;
   value: FieldValueType;
-  fieldType: string;
+  fieldType: FieldTypesEnum;
 }
 
 interface GofFieldType {
   fieldId: string;
   name: string;
   value: FieldValueType;
-  fieldType: string;
+  fieldType: FieldTypesEnum;
 }
 
 interface GofsType {
@@ -127,7 +126,7 @@ interface PhoneNumberValueType {
 
 interface FieldPropsType {
   value: any;
-  fieldType: string; // add enum here
+  fieldType: FieldTypesEnum; // add enum here
 }
 
 interface StatusColorType {
@@ -162,9 +161,32 @@ interface UserContextProviderProps {
   children: React.ReactNode;
 }
 
-type ReactFunctionType = () => React.ReactNode;
+type ReactFunctionType = () => React.ReactElement;
+
+// Component types
+interface FieldMultiSelectPropsType {
+  value: string[];
+}
+interface GofPropsType {
+  field: GofFieldType;
+}
+
+interface HeaderOptionPropsType {
+  option: HeaderOptionType;
+}
+
+interface LeadDetailsFieldPropsType {
+  gof: GofsType;
+}
+
+type VoidFunctionType = () => void;
 
 export type {
+  HeaderOptionPropsType,
+  VoidFunctionType,
+  LeadDetailsFieldPropsType,
+  FieldMultiSelectPropsType,
+  GofPropsType,
   StageType,
   HeaderOptionType,
   HeaderOptionsType,

@@ -4,10 +4,15 @@ import { FaChevronDown } from "../Icons";
 
 import { UserContext } from "../context/userContext";
 import Field from "./Field";
-import { OverviewFieldsType, ReactFunctionType, ShowLimitEnum } from "../types";
+import {
+  OverviewFieldsType,
+  ReactFunctionType,
+  ShowLimitEnum,
+  VoidFunctionType,
+} from "../types";
 
 const Overview: React.FC = () => {
-  const [overviewShowLimit, setOverViewShowLimit] = useState(
+  const [overviewShowLimit, setOverViewShowLimit] = useState<number>(
     ShowLimitEnum.overviewFieldsShowLimit
   );
 
@@ -49,7 +54,7 @@ const Overview: React.FC = () => {
     );
   };
 
-  const handleClickSeeMore: () => void = () => {
+  const handleClickSeeMore: VoidFunctionType = () => {
     if (overviewShowLimit === overviewFields.length) {
       setOverViewShowLimit(ShowLimitEnum.overviewFieldsShowLimit);
     } else {
@@ -64,7 +69,7 @@ const Overview: React.FC = () => {
     return "See Less";
   };
 
-  const renderSeeMoreButton: ReactFunctionType = () => {
+  const renderSeeMoreButton: () => React.ReactNode = () => {
     if (overviewFields.length === ShowLimitEnum.overviewFieldsShowLimit) {
       return <></>;
     }

@@ -1,16 +1,16 @@
 import { v4 } from "uuid";
 import React from "react";
 
-import { ReactFunctionType, ShowLimitEnum } from "../types";
-// add type into types.ts
-const FieldMultiSelect: React.FC<{ value: string[] }> = ({ value }) => {
+import { FieldMultiSelectPropsType, ShowLimitEnum } from "../types";
+
+const FieldMultiSelect: React.FC<FieldMultiSelectPropsType> = ({ value }) => {
   const multiSelectLimitData = value.slice(
     0,
     ShowLimitEnum.multiSelectShowLimit
   );
   const diff = value.length - ShowLimitEnum.multiSelectShowLimit;
 
-  const renderCount: ReactFunctionType = () => {
+  const renderCount: () => React.ReactNode = () => {
     if (diff > 0) {
       return <p className="text-slate-700">+{diff}</p>;
     }

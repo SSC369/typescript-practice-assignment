@@ -9,7 +9,9 @@ import { showSuccessToast } from "../utils/toastUtils";
 import { ReactFunctionType, ShowLimitEnum } from "../types";
 
 const Assignees: React.FC = () => {
-  const [showLimit, setShowLimit] = useState(ShowLimitEnum.assigneesShowLimit);
+  const [showLimit, setShowLimit] = useState<number>(
+    ShowLimitEnum.assigneesShowLimit
+  );
   const contextUserData = useContext(UserContext)!.userData;
   const assignees = contextUserData?.assignees;
 

@@ -3,10 +3,14 @@ import { FaChevronDown } from "../Icons";
 
 import Gof from "./Gof";
 import { v4 } from "uuid";
-import { GofsType, ReactFunctionType } from "../types";
+import {
+  GofsType,
+  LeadDetailsFieldPropsType,
+  ReactFunctionType,
+} from "../types";
 
-const LeadDetailsField: React.FC<{ gof: GofsType }> = ({ gof }) => {
-  const [showMore, setShowMore] = useState(false); //add type
+const LeadDetailsField: React.FC<LeadDetailsFieldPropsType> = ({ gof }) => {
+  const [showMore, setShowMore] = useState<boolean>(false);
   const { name } = gof;
 
   const renderGof: (gof: GofsType) => React.ReactNode = (gof) => {

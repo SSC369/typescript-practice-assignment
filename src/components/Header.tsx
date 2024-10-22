@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import {
   FiRefreshCw,
   FaChevronDown,
@@ -20,17 +20,18 @@ import {
   NavigationRoutesEnum,
   ReactFunctionType,
   StageType,
+  VoidFunctionType,
 } from "../types";
 
 const Header: React.FC = () => {
   const contextHeaderData = useContext(UserContext)!.headerData;
   const contextFetchData = useContext(UserContext)!.fetchData;
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const { name, stage } = contextHeaderData;
   const logo: string = getLogo(name);
   const options: string[] = Object.keys(HEADER_OPTIONS);
 
-  const handleRefresh: () => void = () => {
+  const handleRefresh: VoidFunctionType = () => {
     contextFetchData();
   };
 
@@ -97,7 +98,7 @@ const Header: React.FC = () => {
     );
   };
 
-  const handleNavigateBack: () => void = () => {
+  const handleNavigateBack: VoidFunctionType = () => {
     // add a seperate interface
     navigate(NavigationRoutesEnum.usersPagePath);
   };

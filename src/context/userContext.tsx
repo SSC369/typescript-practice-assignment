@@ -8,16 +8,17 @@ import {
   LeadTabsEnum,
   UserContextProviderProps,
   UserContextType,
+  UsersLeadDataType,
 } from "../types";
 
-// Create a context with a default value
 export const UserContext = createContext<UserContextType | null>(null);
 
-// The provider component with typed props
 export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   children,
 }) => {
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<
+    UsersLeadDataType | null | undefined
+  >(null);
   const [activeTab, setActiveTab] = useState<string>(
     LeadTabsEnum["lead-details"]
   );

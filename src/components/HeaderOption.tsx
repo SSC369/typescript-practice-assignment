@@ -4,28 +4,31 @@ import { IoIosCall, IoIosSend, FaRegFileLines } from "../Icons";
 import { HEADER_OPTIONS } from "../constants";
 import whatsappIcon from "../assets/whatsapp.png";
 import { showSuccessToast } from "../utils/toastUtils";
-import { HeaderOptionType } from "../types";
+import {
+  HeaderOptionPropsType,
+  HeaderOptionType,
+  VoidFunctionType,
+} from "../types";
 
-const HeaderOption: React.FC<{ option: HeaderOptionType }> = ({ option }) => {
+const HeaderOption: React.FC<HeaderOptionPropsType> = ({ option }) => {
   const renderIcon: (option: HeaderOptionType) => React.ReactNode = (
     option
   ) => {
-    //remove and option and add option name
-    switch (option) {
-      case HEADER_OPTIONS.call:
+    switch (option.name) {
+      case HEADER_OPTIONS.call.name:
         return <IoIosCall className="text-xl" color={option.color} />;
-      case HEADER_OPTIONS.remarks:
+      case HEADER_OPTIONS.remarks.name:
         return <FaRegFileLines className="text-lg" color={option.color} />;
-      case HEADER_OPTIONS.send:
+      case HEADER_OPTIONS.send.name:
         return <IoIosSend className="text-xl" color={option.color} />;
-      case HEADER_OPTIONS.whatsapp:
+      case HEADER_OPTIONS.whatsapp.name:
         return <img className="h-4" src={whatsappIcon} />;
       default:
         break;
     }
   };
 
-  const handleClick: () => void = () => {
+  const handleClick: VoidFunctionType = () => {
     showSuccessToast("Yet to be added");
   };
 

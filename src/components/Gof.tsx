@@ -1,7 +1,7 @@
-import { GofFieldType } from "../types";
+import { GofPropsType } from "../types";
 import Field from "./Field";
 
-const Gof: React.FC<{ field: GofFieldType }> = ({ field }) => {
+const Gof: React.FC<GofPropsType> = ({ field }) => {
   return (
     <li className="text-sm flex flex-col gap-2 w-1/3  border-r-[1px] last:border-0 pr-6">
       <p className="text-slate-600 text-xs">{field.name}</p>

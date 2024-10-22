@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { v4 } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import {
   BsActivity,
   CgProfile,
@@ -18,7 +18,7 @@ import { LeadTabsEnum, LeadTabsNavigateEnum } from "../types";
 const LeadTabs = () => {
   const activeTab = useContext(UserContext)!.activeTab;
   const setActiveTab = useContext(UserContext)!.setActiveTab;
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const leadTabs = LEAD_TABS;
   //add enum here

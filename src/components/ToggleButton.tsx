@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { VoidFunctionType } from "../types";
 
 const ToggleSwitch: React.FC = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  const handleToggle: () => void = () => {
+  const handleToggle: VoidFunctionType = () => {
     setIsChecked(!isChecked);
   };
 
