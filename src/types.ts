@@ -20,18 +20,18 @@ export enum ShowLimitEnum {
 // Lead Tabs Enum
 export enum LeadTabsEnum {
   "lead-details" = "lead-details",
-  "activities" = "activities",
-  "remarks" = "remarks",
-  "documents" = "documents",
+  activities = "activities",
+  remarks = "remarks",
+  documents = "documents",
   "call-log" = "call-log",
   "history-log" = "history-log",
 }
 
 export enum LeadTabsNavigateEnum {
   "lead-details" = "",
-  "activities" = "activities",
-  "remarks" = "remarks",
-  "documents" = "documents",
+  activities = "activities",
+  remarks = "remarks",
+  documents = "documents",
   "call-log" = "call-log",
   "history-log" = "history-log",
 }

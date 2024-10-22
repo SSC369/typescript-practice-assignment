@@ -1,4 +1,5 @@
 import { HeaderOptionsType, LeadTabsEnum, LeadTabsNavigateEnum } from "./types";
+
 const HEADER_OPTIONS: HeaderOptionsType = {
   call: { name: "call", bgColor: "#EFF8FF", color: "#1570EF" },
   whatsapp: { name: "whatsapp", bgColor: "#ECFDF3", color: "#039855" },
