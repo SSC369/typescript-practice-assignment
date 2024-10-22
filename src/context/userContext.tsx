@@ -1,30 +1,14 @@
-import { createContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import Loader from "../components/Loader";
 import data from "../userData";
 import { LEAD_TABS } from "../constants";
-import { StageType, UsersLeadDataType } from "../types";
-
-// Define the type for header data
-interface HeaderData {
-  leadId: string;
-  name: string;
-  stage: StageType;
-}
-
-interface UserContextType {
-  headerData: HeaderData;
-  activeTab: string;
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  userData: UsersLeadDataType;
-  fetchData: () => Promise<void>;
-}
-
-// Define the provider props (with children)
-interface UserContextProviderProps {
-  children: React.ReactNode;
-}
+import {
+  HeaderData,
+  UserContextProviderProps,
+  UserContextType,
+} from "../types";
 
 // Create a context with a default value
 export const UserContext = createContext<UserContextType | null>(null);

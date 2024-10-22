@@ -4,26 +4,12 @@ import { FaPhoneAlt, GoDotFill } from "../Icons";
 
 import { FIELD_DATE_FORMAT, FIELD_TYPES } from "../constants";
 import FieldMultiSelect from "./FieldMultiSelect";
-
-interface PhoneNumberValueType {
-  phoneNumber: string;
-  countryCode: string;
-}
-
-type FieldPhoneNumberType = (value: PhoneNumberValueType) => React.ReactNode;
-
-interface FieldPropsType {
-  value: any;
-  fieldType: string;
-}
-
-type CheckboxTextType = (value: string[] | string) => React.ReactNode;
-interface StatusColorType {
-  status: string;
-  color: string;
-  bgColor?: string;
-}
-type StatusType = (value: StatusColorType) => React.ReactNode;
+import {
+  CheckboxTextType,
+  FieldPhoneNumberType,
+  FieldPropsType,
+  StatusType,
+} from "../types";
 
 const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
   const renderFieldPhoneNumber: FieldPhoneNumberType = (value) => {

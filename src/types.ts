@@ -1,5 +1,3 @@
-import React from "react";
-
 interface HeaderOptionType {
   name: string;
   bgColor: string;
@@ -98,6 +96,48 @@ interface UsersLeadDataType {
   gofs: GofsType[];
 }
 
+interface PhoneNumberValueType {
+  phoneNumber: string;
+  countryCode: string;
+}
+
+interface FieldPropsType {
+  value: any;
+  fieldType: string;
+}
+
+interface StatusColorType {
+  status: string;
+  color: string;
+  bgColor?: string;
+}
+
+type FieldPhoneNumberType = (value: PhoneNumberValueType) => React.ReactNode;
+
+type CheckboxTextType = (value: string[] | string) => React.ReactNode;
+
+type StatusType = (value: StatusColorType) => React.ReactNode;
+
+// Define the type for header data
+interface HeaderData {
+  leadId: string;
+  name: string;
+  stage: StageType;
+}
+
+interface UserContextType {
+  headerData: HeaderData;
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  userData: UsersLeadDataType;
+  fetchData: () => Promise<void>;
+}
+
+// Define the provider props (with children)
+interface UserContextProviderProps {
+  children: React.ReactNode;
+}
+
 export type {
   StageType,
   HeaderOptionType,
@@ -122,4 +162,13 @@ export type {
   OverviewFieldsType,
   GofsType,
   GofFieldType,
+  PhoneNumberValueType,
+  FieldPropsType,
+  StatusColorType,
+  FieldPhoneNumberType,
+  CheckboxTextType,
+  StatusType,
+  UserContextType,
+  UserContextProviderProps,
+  HeaderData,
 };
