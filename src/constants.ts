@@ -7,12 +7,12 @@ const HEADER_OPTIONS: HeaderOptionsType = {
   send: { name: "send", bgColor: "#EFF8FF", color: "#1570EF" },
 };
 const LEAD_TABS: LeadTabsEnum[] = [
-  LeadTabsEnum["lead-details"],
+  LeadTabsEnum.leadDetails,
   LeadTabsEnum.activities,
-  LeadTabsEnum["call-log"],
+  LeadTabsEnum.callLog,
   LeadTabsEnum.documents,
   LeadTabsEnum.remarks,
-  LeadTabsEnum["history-log"],
+  LeadTabsEnum.historyLog,
 ];
 const LEAD_TABS_NAVIGATE: LeadTabsNavigateEnum[] = [
   LeadTabsNavigateEnum["lead-details"],

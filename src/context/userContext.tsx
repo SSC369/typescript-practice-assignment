@@ -19,9 +19,7 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   const [userData, setUserData] = useState<
     UsersLeadDataType | null | undefined
   >(null);
-  const [activeTab, setActiveTab] = useState<string>(
-    LeadTabsEnum["lead-details"]
-  );
+  const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { leadId } = useParams<{ leadId: string }>();
@@ -35,8 +33,12 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const leadData = data.find((lead) => lead.leadId === leadId);
-    setUserData(leadData);
+    const leadData: UsersLeadDataType | undefined = data.find(
+      (lead) => lead.leadId === leadId
+    );
+    if (leadData) {
+      setUserData(leadData);
+    }
     setIsLoading(false);
   };
 

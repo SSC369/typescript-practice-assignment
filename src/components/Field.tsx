@@ -73,8 +73,16 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
         return <p className="font-medium text-sky break-words">{value}</p>;
       case FieldTypesEnum.status:
         return renderStatus(value);
+      case FieldTypesEnum.dropdown:
+        return <p className="font-medium break-words">{value}</p>;
+      case FieldTypesEnum.smallText:
+        return <p className="font-medium break-words">{value}</p>;
+      case FieldTypesEnum.email:
+        return <p className="font-medium break-words">{value}</p>;
+      case FieldTypesEnum.number:
+        return <p className="font-medium break-words">{value}</p>;
       default: // define all cases here
-        return <p className="font-medium break-words">{value}</p>; // throw error here
+        throw new Error("Invalid FieldType");
     }
   };
 

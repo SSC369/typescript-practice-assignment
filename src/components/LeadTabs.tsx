@@ -24,11 +24,11 @@ const LeadTabs = () => {
   //add enum here
   const renderTabIcon: (tab: string) => React.ReactNode = (tab) => {
     switch (tab) {
-      case LeadTabsEnum["lead-details"]:
+      case LeadTabsEnum.leadDetails:
         return (
           <CgProfile
             className={`text-xl  ${
-              activeTab === LeadTabsEnum["lead-details"]
+              activeTab === LeadTabsEnum.leadDetails
                 ? "text-sky"
                 : "text-[#98A2B3]"
             }`}
@@ -62,21 +62,19 @@ const LeadTabs = () => {
             }`}
           />
         );
-      case LeadTabsEnum["call-log"]:
+      case LeadTabsEnum.callLog:
         return (
           <IoIosCall
             className={`text-xl  ${
-              activeTab === LeadTabsEnum["call-log"]
-                ? "text-sky"
-                : "text-[#98A2B3]"
+              activeTab === LeadTabsEnum.callLog ? "text-sky" : "text-[#98A2B3]"
             }`}
           />
         );
-      case LeadTabsEnum["history-log"]:
+      case LeadTabsEnum.historyLog:
         return (
           <TbHistory
             className={`text-xl  ${
-              activeTab === LeadTabsEnum["history-log"]
+              activeTab === LeadTabsEnum.historyLog
                 ? "text-sky"
                 : "text-[#98A2B3]"
             }`}

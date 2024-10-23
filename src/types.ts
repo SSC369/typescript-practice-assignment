@@ -9,6 +9,10 @@ export enum FieldTypesEnum {
   longText = "LONG_TEXT",
   url = "URL",
   status = "STATUS",
+  number = "NUMBER",
+  email = "EMAIL",
+  smallText = "SMALL_TEXT",
+  dropdown = "DOWNDOWN",
 }
 
 export enum ShowLimitEnum {
@@ -19,12 +23,12 @@ export enum ShowLimitEnum {
 
 // Lead Tabs Enum
 export enum LeadTabsEnum { // use camel case
-  "lead-details" = "lead-details",
+  leadDetails = "lead-details",
   activities = "activities",
   remarks = "remarks",
   documents = "documents",
-  "call-log" = "call-log",
-  "history-log" = "history-log",
+  callLog = "call-log",
+  historyLog = "history-log",
 }
 
 export enum LeadTabsNavigateEnum {
