@@ -8,7 +8,6 @@ import {
   RxLink2,
 } from "../Icons";
 import { LuMoveLeft } from "react-icons/lu";
-import { v4 } from "uuid";
 import { observer } from "mobx-react-lite";
 
 import { UserContext } from "../context/userContext";
@@ -28,6 +27,7 @@ const Header: React.FC = observer(() => {
   const contextHeaderData = useContext(UserContext)!.headerData;
   const contextFetchData = useContext(UserContext)!.fetchData;
   const navigate: NavigateFunction = useNavigate();
+
   const { name, stage } = contextHeaderData;
   const logo: string = getLogo(name);
 
@@ -42,7 +42,7 @@ const Header: React.FC = observer(() => {
       <ul className="flex items-center justify-between mt-2 gap-3">
         {options.map((option) => {
           const optionData = HEADER_OPTIONS[option as keyof HeaderOptionsType];
-          return <HeaderOption key={v4()} option={optionData} />;
+          return <HeaderOption key={option} option={optionData} />;
         })}
       </ul>
     );

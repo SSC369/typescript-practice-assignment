@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { v4 } from "uuid";
 import { FaChevronDown } from "../Icons";
 import { observer } from "mobx-react-lite";
 
@@ -30,11 +29,11 @@ const Overview: React.FC = observer(() => {
   }
 
   const renderOverviewField: (field: string) => React.ReactNode = (field) => {
-    const { name, value, fieldType } = overviewFieldsMap.get(field)!;
+    const { name, value, fieldType, fieldId } = overviewFieldsMap.get(field)!;
     return (
       <li
         className="flex items-center border-b-[1px] last:border-none text-slate-800 pb-4"
-        key={v4()}
+        key={fieldId}
       >
         <p className="flex-grow  text-slate-600 w-1/2 text-sm">{name}</p>
         <Field value={value} fieldType={fieldType} />

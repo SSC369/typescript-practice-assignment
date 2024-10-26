@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { MdOutlineEdit } from "react-icons/md";
 import { FaChevronDown } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
-import { v4 } from "uuid";
 
 import { UserContext } from "../context/userContext";
 import { showSuccessToast } from "../utils/toastUtils";
@@ -33,7 +32,7 @@ const Assignees: React.FC = observer(() => {
     return (
       <li
         className="flex items-center text-xs border-b-[1px] last:border-none py-2"
-        key={v4()}
+        key={id}
       >
         <p className="flex-grow font-medium text-slate-600">{id}</p>
         <p className="font-medium text-slate-800">{name}</p>

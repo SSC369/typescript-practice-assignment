@@ -16,9 +16,6 @@ export const UserContext = createContext<UserContextType | null>(null);
 export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   children,
 }) => {
-  const [userData, setUserData] = useState<LeadDataModel | null | undefined>(
-    null
-  );
   const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const leadId: string = useParams().leadId!;
@@ -31,14 +28,9 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
 
   const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
-    dataStore.setLeadDataStore();
-    const leadDataMap: Map<string, LeadDataModel> = dataStore.getLeadData();
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const leadData: LeadDataModel = leadDataMap.get(leadId)!;
-    console.log(leadData);
-    if (leadData) {
-      setUserData(leadData);
-    }
+    dataStore.setLeadDataStore();
+
     setIsLoading(false);
   };
 
@@ -50,9 +42,11 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
     );
   }
 
-  if (!isLoading && userData) {
-    const { leadId, name, stage } = userData;
-    const headerData: HeaderData = { leadId, name, stage };
+  if (!isLoading) {
+    const leadDataMap: Map<string, LeadDataModel> = dataStore.getLeadData();
+    let userData: LeadDataModel = leadDataMap.get(leadId)!;
+    const { name, stage } = userData;
+    const headerData: HeaderData = { leadId: userData.leadId, name, stage };
     return (
       <UserContext.Provider
         value={{

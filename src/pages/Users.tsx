@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { v4 } from "uuid";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { observer } from "mobx-react-lite";
@@ -11,19 +10,14 @@ import dataStore from "../store/DataStore";
 import Loader from "../components/Loader";
 
 const Users: React.FC = observer(() => {
-  const [userData, setUserData] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate: NavigateFunction = useNavigate();
 
-  const usersDataMap = dataStore.getUsersData;
-
   const fetchUserData: () => Promise<void> = async () => {
     try {
-      dataStore.setUsersData();
       setIsLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      const usersDataMapKeys = Array.from(usersDataMap.keys());
-      setUserData(usersDataMapKeys);
+      dataStore.setUsersData();
       setIsLoading(false);
     } catch (error) {}
   };
@@ -41,7 +35,7 @@ const Users: React.FC = observer(() => {
     return (
       <li
         onClick={() => handleClick(user.leadId)}
-        key={v4()}
+        key={user.leadId}
         className="mt-4 hover:bg-slate-50 flex gap-2 items-center cursor-pointer bg-white py-2 px-2 rounded-2xl relative"
       >
         <div className="bg-sky rounded-full p-2 w-[40px] h-[40px] flex items-center justify-center">
@@ -67,6 +61,23 @@ const Users: React.FC = observer(() => {
     );
   };
 
+  const renderUsersData = () => {
+    const usersDataMap = dataStore.getUsersData;
+    const usersDataMapKeys = Array.from(usersDataMap.keys());
+    let userDataKeys: string[] = [...usersDataMapKeys];
+    return (
+      <div className="min-h-dvh flex flex-col items-center justify-center gap-2 bg-slate-100">
+        <img src={logo} className="h-6" />
+        <h1 className="font-semibold text-slate-600 text-xl">CRM Users</h1>
+        <ul className="min-w-[200px] w-[400px]">
+          {userDataKeys.map((userId: string) => {
+            return renderUser(dataStore.getUsersData.get(userId)!);
+          })}
+        </ul>
+      </div>
+    );
+  };
+
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-dvh">
@@ -74,17 +85,7 @@ const Users: React.FC = observer(() => {
       </div>
     );
   }
-  return (
-    <div className="min-h-dvh flex flex-col items-center justify-center gap-2 bg-slate-100">
-      <img src={logo} className="h-6" />
-      <h1 className="font-semibold text-slate-600 text-xl">CRM Users</h1>
-      <ul className="min-w-[200px] w-[400px]">
-        {userData.map((user: string) => {
-          return renderUser(usersDataMap.get(user)!);
-        })}
-      </ul>
-    </div>
-  );
+  return renderUsersData();
 });
 
 export default Users;

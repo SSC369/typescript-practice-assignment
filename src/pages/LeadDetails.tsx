@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
-import { v4 } from "uuid";
 
 import { UserContext } from "../context/userContext";
 import LeadDetailsField from "../components/LeadDetailsField";
@@ -17,7 +16,7 @@ const LeadDetails: React.FC = observer(() => {
       <ul className="">
         {gofs?.map((gofKey) => {
           const gof = gofsMap.get(gofKey)!;
-          return <LeadDetailsField key={v4()} gof={gof} />;
+          return <LeadDetailsField key={gofKey} gof={gof} />;
         })}
       </ul>
     );

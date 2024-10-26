@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
 
 import Gof from "./Gof";
-import { v4 } from "uuid";
+
 import { LeadDetailsFieldPropsType, ReactFunctionType } from "../types";
 import { FaChevronDown } from "../Icons";
 import FieldModel from "../models/FieldModel";
@@ -12,18 +12,18 @@ const LeadDetailsField: React.FC<LeadDetailsFieldPropsType> = observer(
   ({ gof }) => {
     const [showMore, setShowMore] = useState<boolean>(false);
     const { name } = gof;
-    const gofFieldsMap: Map<string, FieldModel> = gof.fields;
-    const gofFieldKeys = Array.from(gofFieldsMap.keys());
 
     const renderGof: (gof: GofModel) => React.ReactNode = (gof) => {
       if (gof.fields.size === 0) {
         return <p className="">-</p>;
       }
+      const gofFieldsMap: Map<string, FieldModel> = gof.fields;
+      const gofFieldKeys = Array.from(gofFieldsMap.keys());
       return (
         <ul className="flex gap-6 flex-wrap">
           {gofFieldKeys.map((fieldKey: string) => {
             const field = gofFieldsMap.get(fieldKey)!;
-            return <Gof field={field} key={v4()} />;
+            return <Gof field={field} key={fieldKey} />;
           })}
         </ul>
       );
