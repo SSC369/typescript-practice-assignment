@@ -14,10 +14,13 @@ const Overview: React.FC = observer(() => {
   );
 
   const contextUserData = useContext(UserContext)!.userData;
-  const { overviewFields } = contextUserData;
+  const overviewFieldsMap: Map<string, OverviewModel> =
+    contextUserData.overviewFields!;
 
-  let overviewLimitData: OverviewModel[];
-  if (overviewFields!.length > overviewShowLimit) {
+  const overviewFields: string[] = Array.from(overviewFieldsMap.keys());
+
+  let overviewLimitData: string[];
+  if (overviewFieldsMap.size > overviewShowLimit) {
     overviewLimitData = overviewFields!.slice(
       0,
       ShowLimitEnum.overviewFieldsShowLimit
@@ -26,10 +29,8 @@ const Overview: React.FC = observer(() => {
     overviewLimitData = overviewFields;
   }
 
-  const renderOverviewField: (field: OverviewModel) => React.ReactNode = (
-    field
-  ) => {
-    const { name, value, fieldType } = field;
+  const renderOverviewField: (field: string) => React.ReactNode = (field) => {
+    const { name, value, fieldType } = overviewFieldsMap.get(field)!;
     return (
       <li
         className="flex items-center border-b-[1px] last:border-none text-slate-800 pb-4"
@@ -44,7 +45,7 @@ const Overview: React.FC = observer(() => {
   const renderOverviewFields: ReactFunctionType = () => {
     return (
       <ul className="flex flex-col gap-4 ">
-        {overviewLimitData.map((field: any) => {
+        {overviewLimitData.map((field: string) => {
           return renderOverviewField(field);
         })}
       </ul>
@@ -52,25 +53,25 @@ const Overview: React.FC = observer(() => {
   };
 
   const handleClickSeeMore: VoidFunctionType = () => {
-    if (overviewShowLimit === overviewFields.length) {
+    if (overviewShowLimit === overviewFieldsMap.size) {
       setOverViewShowLimit(ShowLimitEnum.overviewFieldsShowLimit);
     } else {
-      setOverViewShowLimit(overviewFields.length);
+      setOverViewShowLimit(overviewFieldsMap.size);
     }
   };
 
   const renderSeeMoreButtonText: () => string = () => {
-    if (overviewShowLimit < overviewFields.length) {
+    if (overviewShowLimit < overviewFieldsMap.size) {
       return "See More";
     }
     return "See Less";
   };
 
   const renderSeeMoreButton: () => React.ReactNode = () => {
-    if (overviewFields.length === ShowLimitEnum.overviewFieldsShowLimit) {
+    if (overviewFieldsMap.size === ShowLimitEnum.overviewFieldsShowLimit) {
       return <></>;
     }
-    if (overviewShowLimit <= overviewFields.length) {
+    if (overviewShowLimit <= overviewFieldsMap.size) {
       return (
         <button
           onClick={handleClickSeeMore}
@@ -79,7 +80,7 @@ const Overview: React.FC = observer(() => {
           <p className="text-sky font-semibold">{renderSeeMoreButtonText()}</p>
           <FaChevronDown
             className={`transition-transform duration-300 ease-in-out ${
-              overviewShowLimit < overviewFields.length
+              overviewShowLimit < overviewFieldsMap.size
                 ? "rotate-0"
                 : "rotate-180"
             }`}

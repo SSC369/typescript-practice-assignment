@@ -9,12 +9,14 @@ import GofModel from "../models/GofModel";
 
 const LeadDetails: React.FC = observer(() => {
   const contextUserData = useContext(UserContext)!.userData;
-  const gofs: GofModel[] = contextUserData.gofs;
+  const gofsMap: Map<string, GofModel> = contextUserData.gofs;
 
+  const gofs = Array.from(gofsMap.keys());
   const renderGofs: ReactFunctionType = () => {
     return (
       <ul className="">
-        {gofs?.map((gof) => {
+        {gofs?.map((gofKey) => {
+          const gof = gofsMap.get(gofKey)!;
           return <LeadDetailsField key={v4()} gof={gof} />;
         })}
       </ul>

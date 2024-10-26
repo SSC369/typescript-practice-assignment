@@ -15,10 +15,12 @@ const Assignees: React.FC = observer(() => {
     ShowLimitEnum.assigneesShowLimit
   );
   const contextUserData = useContext(UserContext)!.userData;
-  const assignees: AssigneeModel[] = contextUserData?.assignees;
+  const assigneesMap: Map<string, AssigneeModel> = contextUserData?.assignees;
 
-  let assigneesLimitData: AssigneeModel[];
-  if (assignees.length > showLimit) {
+  const assignees = Array.from(assigneesMap.keys());
+
+  let assigneesLimitData: string[];
+  if (assigneesMap.size > showLimit) {
     assigneesLimitData = assignees.slice(0, showLimit);
   } else {
     assigneesLimitData = assignees;
@@ -46,7 +48,7 @@ const Assignees: React.FC = observer(() => {
     return (
       <ul className="flex flex-col gap-2">
         {assigneesLimitData.map((a) => {
-          const { id, name } = a;
+          const { id, name } = assigneesMap.get(a)!;
           return renderAssignee(id, name);
         })}
       </ul>
@@ -54,25 +56,25 @@ const Assignees: React.FC = observer(() => {
   };
 
   const handleClickSeeMore: () => void = () => {
-    if (showLimit === assignees.length) {
+    if (showLimit === assigneesMap.size) {
       setShowLimit(ShowLimitEnum.assigneesShowLimit);
     } else {
-      setShowLimit(assignees.length);
+      setShowLimit(assigneesMap.size);
     }
   };
 
   const renderSeeMoreButtonText: () => string = () => {
-    if (showLimit < assignees.length) {
+    if (showLimit < assigneesMap.size) {
       return "See More";
     }
     return "See Less";
   };
 
   const renderSeeMoreButton: () => React.ReactNode = () => {
-    if (assignees.length === ShowLimitEnum.assigneesShowLimit) {
+    if (assigneesMap.size === ShowLimitEnum.assigneesShowLimit) {
       return <></>;
     }
-    if (showLimit < assignees.length) {
+    if (showLimit < assigneesMap.size) {
       return (
         <button
           onClick={handleClickSeeMore}
@@ -81,7 +83,7 @@ const Assignees: React.FC = observer(() => {
           <p className="text-sky font-semibold">{renderSeeMoreButtonText()}</p>
           <FaChevronDown
             className={`transition-transform duration-300 ease-in-out ${
-              showLimit < assignees.length ? "rotate-0" : "rotate-180"
+              showLimit < assigneesMap.size ? "rotate-0" : "rotate-180"
             }`}
           />
         </button>

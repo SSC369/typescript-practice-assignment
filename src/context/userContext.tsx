@@ -21,7 +21,7 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   );
   const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { leadId } = useParams<{ leadId: string }>();
+  const leadId: string = useParams().leadId!;
 
   useEffect(() => {
     if (leadId) {
@@ -32,12 +32,10 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
     dataStore.setLeadDataStore();
-    const data: LeadDataModel[] = dataStore.getLeadData();
+    const leadDataMap: Map<string, LeadDataModel> = dataStore.getLeadData();
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const leadData: LeadDataModel | undefined = data.find(
-      (lead) => lead.leadId === leadId
-    );
-
+    const leadData: LeadDataModel = leadDataMap.get(leadId)!;
+    console.log(leadData);
     if (leadData) {
       setUserData(leadData);
     }

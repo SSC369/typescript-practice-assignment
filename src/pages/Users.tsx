@@ -10,18 +10,20 @@ import { NavigationRoutesEnum, UserType } from "../types";
 import dataStore from "../store/DataStore";
 import Loader from "../components/Loader";
 
-dataStore.setUsersData();
-
 const Users: React.FC = observer(() => {
-  const [userData, setUserData] = useState<UserType[]>([]);
+  const [userData, setUserData] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate: NavigateFunction = useNavigate();
 
+  const usersDataMap = dataStore.getUsersData;
+
   const fetchUserData: () => Promise<void> = async () => {
     try {
+      dataStore.setUsersData();
       setIsLoading(true);
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      setUserData(dataStore.getUsersData);
+      const usersDataMapKeys = Array.from(usersDataMap.keys());
+      setUserData(usersDataMapKeys);
       setIsLoading(false);
     } catch (error) {}
   };
@@ -77,8 +79,8 @@ const Users: React.FC = observer(() => {
       <img src={logo} className="h-6" />
       <h1 className="font-semibold text-slate-600 text-xl">CRM Users</h1>
       <ul className="min-w-[200px] w-[400px]">
-        {userData.map((user) => {
-          return renderUser(user);
+        {userData.map((user: string) => {
+          return renderUser(usersDataMap.get(user)!);
         })}
       </ul>
     </div>

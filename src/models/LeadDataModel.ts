@@ -9,17 +9,17 @@ class LeadDataModel {
   leadId: string;
   name: string;
   stage: StageType;
-  assignees: AssigneeModel[];
-  overviewFields: OverviewModel[];
-  gofs: GofModel[];
+  assignees: Map<string, AssigneeModel>;
+  overviewFields: Map<string, OverviewModel>;
+  gofs: Map<string, GofModel>;
 
   constructor(
     leadId: string,
     name: string,
     stage: StageType,
-    assignees: AssigneeModel[],
-    overviewFields: OverviewModel[],
-    gofs: GofModel[]
+    assignees: Map<string, AssigneeModel>,
+    overviewFields: Map<string, OverviewModel>,
+    gofs: Map<string, GofModel>
   ) {
     makeAutoObservable(this, {}, { autoBind: true });
     this.leadId = leadId;

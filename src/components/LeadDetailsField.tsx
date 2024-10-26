@@ -12,14 +12,17 @@ const LeadDetailsField: React.FC<LeadDetailsFieldPropsType> = observer(
   ({ gof }) => {
     const [showMore, setShowMore] = useState<boolean>(false);
     const { name } = gof;
+    const gofFieldsMap: Map<string, FieldModel> = gof.fields;
+    const gofFieldKeys = Array.from(gofFieldsMap.keys());
 
     const renderGof: (gof: GofModel) => React.ReactNode = (gof) => {
-      if (gof.fields.length === 0) {
+      if (gof.fields.size === 0) {
         return <p className="">-</p>;
       }
       return (
         <ul className="flex gap-6 flex-wrap">
-          {gof.fields.map((field: FieldModel) => {
+          {gofFieldKeys.map((fieldKey: string) => {
+            const field = gofFieldsMap.get(fieldKey)!;
             return <Gof field={field} key={v4()} />;
           })}
         </ul>

@@ -9,8 +9,8 @@ import GofModel from "../models/GofModel";
 import { UserType } from "../types";
 
 class DataStore {
-  leadDataStore: LeadDataModel[] = [];
-  users: UserType[] = [];
+  leadDataStore: Map<string, LeadDataModel> = new Map();
+  users: Map<string, UserType> = new Map();
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
@@ -23,7 +23,7 @@ class DataStore {
   setUsersData() {
     data.forEach((user) => {
       const { leadId, name, stage } = user;
-      this.users.push({
+      this.users.set(leadId, {
         leadId,
         name,
         stage,
@@ -36,36 +36,50 @@ class DataStore {
       const { assignees, overviewFields, gofs, leadId, name, stage } = userData;
 
       // get instances of assignees
-      const assigneesInstances = assignees.map((assignee) => {
+      const assigneesInstancesMap = new Map();
+      assignees.forEach((assignee) => {
         const { id, name, profilePic, lastUpdated } = assignee;
-        return new AssigneeModel(id, name, profilePic, lastUpdated);
+        assigneesInstancesMap.set(
+          id,
+          new AssigneeModel(id, name, profilePic, lastUpdated)
+        );
       });
 
       // get instances of overviews
-      const overviewFieldsInstances = overviewFields.map((field) => {
+      const overviewFieldsInstancesMap = new Map();
+      overviewFields.forEach((field) => {
         const { fieldId, name, value, fieldType } = field;
-        return new OverviewModel(fieldId, name, value, fieldType);
+        overviewFieldsInstancesMap.set(
+          fieldId,
+          new OverviewModel(fieldId, name, value, fieldType)
+        );
       });
 
       // get instances of gofs
-      const gofsInstances = gofs.map((gof) => {
+      const gofsInstancesMap = new Map();
+      gofs.forEach((gof) => {
         const { id, name, fields } = gof;
-        // create an array of instances for field
-        const fieldInstances = fields.map((field) => {
+        // create a map of instances for field
+        const fieldInstancesMap = new Map();
+        fields.forEach((field) => {
           const { fieldId, name, value, fieldType } = field;
-          return new FieldModel(fieldId, name, value, fieldType);
+          fieldInstancesMap.set(
+            fieldId,
+            new FieldModel(fieldId, name, value, fieldType)
+          );
         });
-        return new GofModel(id, name, fieldInstances);
+        gofsInstancesMap.set(id, new GofModel(id, name, fieldInstancesMap));
       });
 
-      this.leadDataStore.push(
+      this.leadDataStore.set(
+        leadId,
         new LeadDataModel(
           leadId,
           name,
           stage,
-          assigneesInstances,
-          overviewFieldsInstances,
-          gofsInstances
+          assigneesInstancesMap,
+          overviewFieldsInstancesMap,
+          gofsInstancesMap
         )
       );
     });
