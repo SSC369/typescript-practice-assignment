@@ -1,6 +1,7 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
-const Documents: React.FC = () => {
+const Documents: React.FC = observer(() => {
   return (
     <div className="">
       <div className="flex items-center gap-4 mt-2">
@@ -13,6 +14,6 @@ const Documents: React.FC = () => {
       </h1>
     </div>
   );
-};
+});
 
 export default Documents;

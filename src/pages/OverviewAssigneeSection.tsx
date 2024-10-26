@@ -1,14 +1,15 @@
 import React from "react";
 import { TbPinned } from "react-icons/tb";
 import dayjs from "dayjs";
+import { observer } from "mobx-react-lite";
 
 import Assignees from "../components/Assignees";
 import Overview from "../components/Overview";
 import ToggleButton from "../components/ToggleButton";
 import { DateFormatEnum, ReactFunctionType } from "../types";
 
-const OverviewAssigneeSection: React.FC = () => {
-  const date: string = dayjs(new Date()).format(DateFormatEnum.dateFormat); //add type
+const OverviewAssigneeSection: React.FC = observer(() => {
+  const date: string = dayjs(new Date()).format(DateFormatEnum.dateFormat);
 
   const renderCreatedOn: ReactFunctionType = () => {
     return (
@@ -37,6 +38,6 @@ const OverviewAssigneeSection: React.FC = () => {
       <Overview />
     </section>
   );
-};
+});
 
 export default OverviewAssigneeSection;

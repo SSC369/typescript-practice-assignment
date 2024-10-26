@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
+
 import { VoidFunctionType } from "../types";
 
-const ToggleSwitch: React.FC = () => {
+const ToggleSwitch: React.FC = observer(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const handleToggle: VoidFunctionType = () => {
@@ -21,6 +23,6 @@ const ToggleSwitch: React.FC = () => {
       ></div>
     </div>
   );
-};
+});
 
 export default ToggleSwitch;

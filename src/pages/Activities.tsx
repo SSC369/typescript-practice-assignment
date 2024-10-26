@@ -1,6 +1,7 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
-const Activities: React.FC = () => {
+const Activities: React.FC = observer(() => {
   return (
     <div className="">
       <div className="flex items-center gap-4 mt-2">
@@ -13,6 +14,6 @@ const Activities: React.FC = () => {
       </h1>
     </div>
   );
-};
+});
 
 export default Activities;

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { v4 } from "uuid";
 import { NavigateFunction, useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+
 import {
   BsActivity,
   CgProfile,
@@ -9,19 +11,18 @@ import {
   LuFileEdit,
   TbHistory,
 } from "../Icons";
-
 import { LEAD_TABS } from "../constants";
 import { UserContext } from "../context/userContext";
 import { getTab } from "../utils/leadUtils";
 import { LeadTabsEnum, LeadTabsNavigateEnum } from "../types";
 
-const LeadTabs = () => {
+const LeadTabs: React.FC = observer(() => {
   const activeTab = useContext(UserContext)!.activeTab;
   const setActiveTab = useContext(UserContext)!.setActiveTab;
   const navigate: NavigateFunction = useNavigate();
 
   const leadTabs = LEAD_TABS;
-  //add enum here
+
   const renderTabIcon: (tab: string) => React.ReactNode = (tab) => {
     switch (tab) {
       case LeadTabsEnum.leadDetails:
@@ -124,6 +125,6 @@ const LeadTabs = () => {
       })}
     </ul>
   );
-};
+});
 
 export default LeadTabs;

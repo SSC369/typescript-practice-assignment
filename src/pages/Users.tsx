@@ -1,23 +1,27 @@
-import React from "react";
-import logo from "../assets/logo.svg";
+import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
-
-import users from "../userData";
 import { useNavigate } from "react-router-dom";
-import { getLogo } from "../utils/leadUtils";
 import { FaChevronDown } from "react-icons/fa";
-import { NavigationRoutesEnum, UsersLeadDataType } from "../types";
+import { observer } from "mobx-react-lite";
 
-const Users: React.FC = () => {
+import logo from "../assets/logo.svg";
+import { getLogo } from "../utils/leadUtils";
+import { NavigationRoutesEnum, UserType } from "../types";
+import dataStore from "../store/DataStore";
+
+const Users: React.FC = observer(() => {
+  const [users, setUsers] = useState<UserType[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setUsers(dataStore.getUsersData);
+  }, []);
 
   const handleClick: (id: string) => void = (id) => {
     navigate(NavigationRoutesEnum.leadViewPagePath + "/" + id);
   };
 
-  const renderUser: (user: UsersLeadDataType) => React.ReactElement = (
-    user
-  ) => {
+  const renderUser: (user: UserType) => React.ReactElement = (user) => {
     const stage = user.stage;
     return (
       <li
@@ -59,6 +63,6 @@ const Users: React.FC = () => {
       </ul>
     </div>
   );
-};
+});
 
 export default Users;

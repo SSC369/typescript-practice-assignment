@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
+import { observer } from "mobx-react-lite";
+import { v4 } from "uuid";
 
 import { UserContext } from "../context/userContext";
 import LeadDetailsField from "../components/LeadDetailsField";
-import { v4 } from "uuid";
 import { ReactFunctionType } from "../types";
+import GofModel from "../models/GofModel";
 
-const LeadDetails: React.FC = () => {
+const LeadDetails: React.FC = observer(() => {
   const contextUserData = useContext(UserContext)!.userData;
-  const { gofs } = contextUserData;
+  const gofs: GofModel[] = contextUserData.gofs;
 
   const renderGofs: ReactFunctionType = () => {
     return (
@@ -27,6 +29,6 @@ const LeadDetails: React.FC = () => {
       {renderGofs()}
     </div>
   );
-};
+});
 
 export default LeadDetails;

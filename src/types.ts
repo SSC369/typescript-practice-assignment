@@ -1,4 +1,7 @@
 import React from "react";
+import LeadDataModel from "./models/LeadDataModel";
+import GofModel from "./models/GofModel";
+import FieldModel from "./models/FieldModel";
 
 // Field Types Enum
 export enum FieldTypesEnum {
@@ -21,8 +24,7 @@ export enum ShowLimitEnum {
   multiSelectShowLimit = 2,
 }
 
-// Lead Tabs Enum
-export enum LeadTabsEnum { // use camel case
+export enum LeadTabsEnum {
   leadDetails = "lead-details",
   activities = "activities",
   remarks = "remarks",
@@ -48,7 +50,7 @@ export enum DateFormatEnum {
 export enum NavigationRoutesEnum {
   homePagePath = "/",
   leadViewPagePath = "/lead-view",
-  usersPagePath = "/users",
+  usersPagePath = "/",
 }
 
 interface HeaderOptionType {
@@ -79,13 +81,6 @@ interface StageType {
   bgColor: string;
 }
 
-interface AssigneeType {
-  id: string;
-  name: string;
-  profilePic: string;
-  lastUpdated: string;
-}
-
 type FieldValueType =
   | string
   | string[]
@@ -94,43 +89,14 @@ type FieldValueType =
   | { color: string; status: string; bgColor: string }
   | boolean;
 
-interface OverviewFieldsType {
-  fieldId: string;
-  name: string;
-  value: FieldValueType;
+interface FieldPropsType {
+  value: any;
   fieldType: FieldTypesEnum;
-}
-
-interface GofFieldType {
-  fieldId: string;
-  name: string;
-  value: FieldValueType;
-  fieldType: FieldTypesEnum;
-}
-
-interface GofsType {
-  id: string;
-  name: string;
-  fields: GofFieldType[];
-}
-
-interface UsersLeadDataType {
-  leadId: string;
-  name: string;
-  stage: StageType;
-  assignees: AssigneeType[];
-  overviewFields: OverviewFieldsType[];
-  gofs: GofsType[];
 }
 
 interface PhoneNumberValueType {
   phoneNumber: string;
   countryCode: string;
-}
-
-interface FieldPropsType {
-  value: any;
-  fieldType: FieldTypesEnum; // add enum here
 }
 
 interface StatusColorType {
@@ -145,7 +111,6 @@ type CheckboxTextType = (value: string[] | string) => React.ReactNode;
 
 type StatusType = (value: StatusColorType) => React.ReactNode;
 
-// Define the type for header data
 interface HeaderData {
   leadId: string;
   name: string;
@@ -156,7 +121,7 @@ interface UserContextType {
   headerData: HeaderData;
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
-  userData: UsersLeadDataType;
+  userData: LeadDataModel;
   fetchData: () => Promise<void>;
 }
 
@@ -164,7 +129,6 @@ interface UserContextType {
 interface UserContextProviderProps {
   children: React.ReactNode;
 }
-
 type ReactFunctionType = () => React.ReactElement;
 
 // Component types
@@ -172,7 +136,7 @@ interface FieldMultiSelectPropsType {
   value: string[];
 }
 interface GofPropsType {
-  field: GofFieldType;
+  field: FieldModel;
 }
 
 interface HeaderOptionPropsType {
@@ -180,7 +144,17 @@ interface HeaderOptionPropsType {
 }
 
 interface LeadDetailsFieldPropsType {
-  gof: GofsType;
+  gof: GofModel;
+}
+
+interface UserType {
+  leadId: string;
+  name: string;
+  stage: {
+    name: string;
+    color: string;
+    bgColor: string;
+  };
 }
 
 type VoidFunctionType = () => void;
@@ -198,10 +172,6 @@ export type {
   GetTabType,
   GetLogoType,
   LoaderTypes,
-  UsersLeadDataType,
-  OverviewFieldsType,
-  GofsType,
-  GofFieldType,
   PhoneNumberValueType,
   FieldPropsType,
   StatusColorType,
@@ -213,4 +183,5 @@ export type {
   HeaderData,
   ReactFunctionType,
   FieldValueType,
+  UserType,
 };

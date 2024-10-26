@@ -9,6 +9,7 @@ import {
 } from "../Icons";
 import { LuMoveLeft } from "react-icons/lu";
 import { v4 } from "uuid";
+import { observer } from "mobx-react-lite";
 
 import { UserContext } from "../context/userContext";
 import { HEADER_OPTIONS } from "../constants";
@@ -23,12 +24,13 @@ import {
   VoidFunctionType,
 } from "../types";
 
-const Header: React.FC = () => {
+const Header: React.FC = observer(() => {
   const contextHeaderData = useContext(UserContext)!.headerData;
   const contextFetchData = useContext(UserContext)!.fetchData;
   const navigate: NavigateFunction = useNavigate();
   const { name, stage } = contextHeaderData;
   const logo: string = getLogo(name);
+
   const options: string[] = Object.keys(HEADER_OPTIONS);
 
   const handleRefresh: VoidFunctionType = () => {
@@ -130,6 +132,6 @@ const Header: React.FC = () => {
       </button>
     </header>
   );
-};
+});
 
 export default Header;

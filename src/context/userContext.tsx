@@ -1,24 +1,24 @@
 import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import Loader from "../components/Loader";
-import data from "../userData";
+
 import {
   HeaderData,
   LeadTabsEnum,
   UserContextProviderProps,
   UserContextType,
-  UsersLeadDataType,
 } from "../types";
+import dataStore from "../store/DataStore";
+import LeadDataModel from "../models/LeadDataModel";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
 export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   children,
 }) => {
-  const [userData, setUserData] = useState<
-    UsersLeadDataType | null | undefined
-  >(null);
+  const [userData, setUserData] = useState<LeadDataModel | null | undefined>(
+    null
+  );
   const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -32,10 +32,12 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
 
   const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
+    const data: LeadDataModel[] = dataStore.getLeadData();
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    const leadData: UsersLeadDataType | undefined = data.find(
+    const leadData: LeadDataModel | undefined = data.find(
       (lead) => lead.leadId === leadId
     );
+
     if (leadData) {
       setUserData(leadData);
     }
@@ -53,7 +55,6 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   if (!isLoading && userData) {
     const { leadId, name, stage } = userData;
     const headerData: HeaderData = { leadId, name, stage };
-
     return (
       <UserContext.Provider
         value={{

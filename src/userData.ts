@@ -1,6 +1,6 @@
-import { FieldTypesEnum, UsersLeadDataType } from "./types";
+import { FieldTypesEnum } from "./types";
 
-const data: UsersLeadDataType[] = [
+const data = [
   {
     leadId: "L123456",
     name: "Emily Johnson",

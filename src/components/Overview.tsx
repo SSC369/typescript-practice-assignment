@@ -1,17 +1,14 @@
 import React, { useContext, useState } from "react";
 import { v4 } from "uuid";
 import { FaChevronDown } from "../Icons";
+import { observer } from "mobx-react-lite";
 
 import { UserContext } from "../context/userContext";
 import Field from "./Field";
-import {
-  OverviewFieldsType,
-  ReactFunctionType,
-  ShowLimitEnum,
-  VoidFunctionType,
-} from "../types";
+import { ReactFunctionType, ShowLimitEnum, VoidFunctionType } from "../types";
+import OverviewModel from "../models/OverviewModel";
 
-const Overview: React.FC = () => {
+const Overview: React.FC = observer(() => {
   const [overviewShowLimit, setOverViewShowLimit] = useState<number>(
     ShowLimitEnum.overviewFieldsShowLimit
   );
@@ -19,7 +16,7 @@ const Overview: React.FC = () => {
   const contextUserData = useContext(UserContext)!.userData;
   const { overviewFields } = contextUserData;
 
-  let overviewLimitData: OverviewFieldsType[];
+  let overviewLimitData: OverviewModel[];
   if (overviewFields!.length > overviewShowLimit) {
     overviewLimitData = overviewFields!.slice(
       0,
@@ -29,7 +26,7 @@ const Overview: React.FC = () => {
     overviewLimitData = overviewFields;
   }
 
-  const renderOverviewField: (field: OverviewFieldsType) => React.ReactNode = (
+  const renderOverviewField: (field: OverviewModel) => React.ReactNode = (
     field
   ) => {
     const { name, value, fieldType } = field;
@@ -99,6 +96,6 @@ const Overview: React.FC = () => {
       {renderSeeMoreButton()}
     </div>
   );
-};
+});
 
 export default Overview;

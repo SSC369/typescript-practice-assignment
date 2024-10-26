@@ -1,38 +1,41 @@
 import { v4 } from "uuid";
 import React from "react";
+import { observer } from "mobx-react-lite";
 
 import { FieldMultiSelectPropsType, ShowLimitEnum } from "../types";
 
-const FieldMultiSelect: React.FC<FieldMultiSelectPropsType> = ({ value }) => {
-  const multiSelectLimitData = value.slice(
-    0,
-    ShowLimitEnum.multiSelectShowLimit
-  );
-  const diff = value.length - ShowLimitEnum.multiSelectShowLimit;
+const FieldMultiSelect: React.FC<FieldMultiSelectPropsType> = observer(
+  ({ value }) => {
+    const multiSelectLimitData = value.slice(
+      0,
+      ShowLimitEnum.multiSelectShowLimit
+    );
+    const diff = value.length - ShowLimitEnum.multiSelectShowLimit;
 
-  const renderCount: () => React.ReactNode = () => {
-    if (diff > 0) {
-      return <p className="text-slate-700">+{diff}</p>;
-    }
-  };
+    const renderCount: () => React.ReactNode = () => {
+      if (diff > 0) {
+        return <p className="text-slate-700">+{diff}</p>;
+      }
+    };
 
-  return (
-    <>
-      <ul className="flex flex-wrap items-center custom-scrollbar pb-2 gap-2 ">
-        {multiSelectLimitData.map((data) => {
-          return (
-            <li
-              key={v4()}
-              className="whitespace-nowrap text-xs p-1 px-2 rounded-xl font-medium bg-sky text-sky"
-            >
-              <p>{data}</p>
-            </li>
-          );
-        })}
-      </ul>
+    return (
+      <>
+        <ul className="flex flex-wrap items-center custom-scrollbar pb-2 gap-2 ">
+          {multiSelectLimitData.map((data) => {
+            return (
+              <li
+                key={v4()}
+                className="whitespace-nowrap text-xs p-1 px-2 rounded-xl font-medium bg-sky text-sky"
+              >
+                <p>{data}</p>
+              </li>
+            );
+          })}
+        </ul>
 
-      {renderCount()}
-    </>
-  );
-};
+        {renderCount()}
+      </>
+    );
+  }
+);
 export default FieldMultiSelect;

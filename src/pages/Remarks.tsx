@@ -1,6 +1,7 @@
+import { observer } from "mobx-react-lite";
 import React from "react";
 
-const Remarks: React.FC = () => {
+const Remarks: React.FC = observer(() => {
   return (
     <div className="">
       <div className="flex items-center gap-4 mt-2">
@@ -12,6 +13,6 @@ const Remarks: React.FC = () => {
       </h1>
     </div>
   );
-};
+});
 
 export default Remarks;

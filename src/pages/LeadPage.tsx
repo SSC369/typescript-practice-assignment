@@ -1,10 +1,12 @@
 import React from "react";
+import { Toaster } from "react-hot-toast";
+import { observer } from "mobx-react-lite";
+
 import Header from "../components/Header";
 import OverviewAssigneeSection from "./OverviewAssigneeSection";
 import LeadViewSection from "./LeadViewSection";
-import { Toaster } from "react-hot-toast";
 
-const LeadPage: React.FC = () => {
+const LeadPage: React.FC = observer(() => {
   return (
     <>
       <Header />
@@ -15,6 +17,6 @@ const LeadPage: React.FC = () => {
       </main>
     </>
   );
-};
+});
 
 export default LeadPage;

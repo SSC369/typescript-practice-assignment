@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import React from "react";
 import { FaPhoneAlt, GoDotFill } from "../Icons";
+import { observer } from "mobx-react-lite";
 
 import FieldMultiSelect from "./FieldMultiSelect";
 import {
@@ -12,7 +13,7 @@ import {
   StatusType,
 } from "../types";
 
-const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
+const Field: React.FC<FieldPropsType> = observer(({ value, fieldType }) => {
   const renderFieldPhoneNumber: FieldPhoneNumberType = (value) => {
     const { phoneNumber, countryCode } = value;
     return (
@@ -37,12 +38,12 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
     const { status, color } = value;
     return (
       <div
-        style={{ backgroundColor: value?.bgColor || "" }}
+        style={{ backgroundColor: value.bgColor }}
         className=" flex items-center gap-1 w-fit pl-2 pr-4 py-1 bg-sky rounded-2xl"
       >
         <GoDotFill color={color} className="text-xs" />
         <p
-          style={{ color: value?.color || "" }}
+          style={{ color: value.color }}
           className="first-letter:capitalize text-xs"
         >
           {status}
@@ -81,7 +82,7 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
         return <p className="font-medium break-words">{value}</p>;
       case FieldTypesEnum.number:
         return <p className="font-medium break-words">{value}</p>;
-      default: // define all cases here
+      default:
         throw new Error("Invalid FieldType");
     }
   };
@@ -91,6 +92,5 @@ const Field: React.FC<FieldPropsType> = ({ value, fieldType }) => {
       {renderFieldValue()}
     </div>
   );
-};
-
+});
 export default Field;

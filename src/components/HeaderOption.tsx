@@ -1,5 +1,6 @@
 import React from "react";
 import { IoIosCall, IoIosSend, FaRegFileLines } from "../Icons";
+import { observer } from "mobx-react-lite";
 
 import { HEADER_OPTIONS } from "../constants";
 import whatsappIcon from "../assets/whatsapp.png";
@@ -10,7 +11,7 @@ import {
   VoidFunctionType,
 } from "../types";
 
-const HeaderOption: React.FC<HeaderOptionPropsType> = ({ option }) => {
+const HeaderOption: React.FC<HeaderOptionPropsType> = observer(({ option }) => {
   const renderIcon: (option: HeaderOptionType) => React.ReactNode = (
     option
   ) => {
@@ -47,6 +48,6 @@ const HeaderOption: React.FC<HeaderOptionPropsType> = ({ option }) => {
       </p>
     </li>
   );
-};
+});
 
 export default HeaderOption;

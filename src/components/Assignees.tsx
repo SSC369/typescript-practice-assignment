@@ -7,15 +7,17 @@ import { v4 } from "uuid";
 import { UserContext } from "../context/userContext";
 import { showSuccessToast } from "../utils/toastUtils";
 import { ReactFunctionType, ShowLimitEnum } from "../types";
+import { observer } from "mobx-react-lite";
+import AssigneeModel from "../models/AssigneeModel";
 
-const Assignees: React.FC = () => {
+const Assignees: React.FC = observer(() => {
   const [showLimit, setShowLimit] = useState<number>(
     ShowLimitEnum.assigneesShowLimit
   );
   const contextUserData = useContext(UserContext)!.userData;
-  const assignees = contextUserData?.assignees;
+  const assignees: AssigneeModel[] = contextUserData?.assignees;
 
-  let assigneesLimitData;
+  let assigneesLimitData: AssigneeModel[];
   if (assignees.length > showLimit) {
     assigneesLimitData = assignees.slice(0, showLimit);
   } else {
@@ -113,6 +115,6 @@ const Assignees: React.FC = () => {
       {renderSeeMoreButton()}
     </div>
   );
-};
+});
 
 export default Assignees;
