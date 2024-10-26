@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { observer } from "mobx-react-lite";
 
@@ -8,13 +8,26 @@ import logo from "../assets/logo.svg";
 import { getLogo } from "../utils/leadUtils";
 import { NavigationRoutesEnum, UserType } from "../types";
 import dataStore from "../store/DataStore";
+import Loader from "../components/Loader";
+
+dataStore.setUsersData();
 
 const Users: React.FC = observer(() => {
-  const [users, setUsers] = useState<UserType[]>([]);
-  const navigate = useNavigate();
+  const [userData, setUserData] = useState<UserType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate: NavigateFunction = useNavigate();
+
+  const fetchUserData: () => Promise<void> = async () => {
+    try {
+      setIsLoading(true);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setUserData(dataStore.getUsersData);
+      setIsLoading(false);
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    setUsers(dataStore.getUsersData);
+    fetchUserData();
   }, []);
 
   const handleClick: (id: string) => void = (id) => {
@@ -52,12 +65,19 @@ const Users: React.FC = observer(() => {
     );
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-dvh">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="min-h-dvh flex flex-col items-center justify-center gap-2 bg-slate-100">
       <img src={logo} className="h-6" />
       <h1 className="font-semibold text-slate-600 text-xl">CRM Users</h1>
       <ul className="min-w-[200px] w-[400px]">
-        {users.map((user) => {
+        {userData.map((user) => {
           return renderUser(user);
         })}
       </ul>

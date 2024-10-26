@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import LeadPage from "./pages/LeadPage";
@@ -11,13 +11,8 @@ import HistoryLog from "./pages/HistoryLog";
 import Users from "./pages/Users";
 import { UserContextProvider } from "./context/userContext";
 import { LeadTabsNavigateEnum, NavigationRoutesEnum } from "./types";
-import dataStore from "./store/DataStore";
 
 const App: React.FC = () => {
-  useEffect(() => {
-    dataStore.setUsersData();
-    dataStore.setLeadDataStore();
-  }, []);
   return (
     <BrowserRouter>
       <Routes>

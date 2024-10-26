@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Loader from "../components/Loader";
 
 import {
   HeaderData,
@@ -10,6 +9,7 @@ import {
 } from "../types";
 import dataStore from "../store/DataStore";
 import LeadDataModel from "../models/LeadDataModel";
+import Loader from "../components/Loader";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
@@ -21,7 +21,6 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
   );
   const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const { leadId } = useParams<{ leadId: string }>();
 
   useEffect(() => {
@@ -32,6 +31,7 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = ({
 
   const fetchData: () => Promise<void> = async () => {
     setIsLoading(true);
+    dataStore.setLeadDataStore();
     const data: LeadDataModel[] = dataStore.getLeadData();
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const leadData: LeadDataModel | undefined = data.find(
