@@ -1,22 +1,18 @@
-interface InventoryEffectType {
-  type: string;
-  value: number;
-  duration: string;
-}
+import InventoryItemEffectModel from "./InventoryItemEffectModel";
 
 class InventoryItemModel {
   id: string;
   name: string;
   quantity: number;
   weight: number;
-  effects: InventoryEffectType;
+  effects: InventoryItemEffectModel;
 
   constructor(
     id: string,
     name: string,
     quantity: number,
     weight: number,
-    effects: InventoryEffectType
+    effects: InventoryItemEffectModel
   ) {
     this.id = id;
     this.name = name;

@@ -1,23 +1,17 @@
-interface GameSkillDamageType {
-  base: number;
-  scaling: {
-    strength: number;
-    dexterity: number;
-  };
-}
+import SkillDamageModel from "./SkillDamageModel";
 
 class GameSkillModel {
   id: string;
   name: string;
   level: number;
-  damage: GameSkillDamageType;
+  damage: SkillDamageModel;
   cooldown: string;
 
   constructor(
     id: string,
     name: string,
     level: number,
-    damage: GameSkillDamageType,
+    damage: SkillDamageModel,
     cooldown: string
   ) {
     this.id = id;

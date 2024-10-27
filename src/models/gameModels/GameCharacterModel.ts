@@ -1,6 +1,7 @@
+import AttributesModel from "./AttributesModel";
+import EquipmentModel from "./EquipmentModel";
 import GameSkillModel from "./GameSkillModel";
-import InventoryItemModel from "./InventoryItemModel";
-import WeaponEffectModel from "./WeaponEffectModel";
+import InventoryModel from "./InventoryModel";
 
 interface BasicType {
   name: string;
@@ -9,67 +10,20 @@ interface BasicType {
   experience: number;
 }
 
-interface PhysicalType {
-  strength: number;
-  dexterity: number;
-  constitution: number;
-}
-
-interface mentalType {
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-}
-
-interface AttributesType {
-  physical: PhysicalType;
-  mental: mentalType;
-}
-
-interface WeaponStats {
-  damage: number;
-  durability: number;
-  effects: WeaponEffectModel[];
-}
-
-interface EquipmentArmorType {
-  id: string;
-  defense: number;
-  weight: number;
-}
-interface EquipmentType {
-  weapon: {
-    id: string;
-    name: string;
-    stats: WeaponStats;
-  };
-  armor: {
-    head: EquipmentArmorType;
-    chest: EquipmentArmorType;
-    legs: EquipmentArmorType;
-  };
-}
-
-interface InventoryType {
-  capacity: number;
-  currentWeight: number;
-  items: InventoryItemModel[];
-}
-
 class GameCharacterModel {
   id: string;
   basic: BasicType;
-  attributes: AttributesType;
-  equipment: EquipmentType;
-  inventory: InventoryType;
+  attributes: AttributesModel;
+  equipment: EquipmentModel;
+  inventory: InventoryModel;
   skills: GameSkillModel[];
 
   constructor(
     id: string,
     basic: BasicType,
-    attributes: AttributesType,
-    equipment: EquipmentType,
-    inventory: InventoryType,
+    attributes: AttributesModel,
+    equipment: EquipmentModel,
+    inventory: InventoryModel,
     skills: GameSkillModel[]
   ) {
     this.id = id;

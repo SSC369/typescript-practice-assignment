@@ -1,33 +1,16 @@
-interface AddressCoordinates {
-  lat: number;
-  lng: number;
-}
-
-interface AddressType {
-  street: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  coordinates: AddressCoordinates;
-}
-
-interface InventoryCategoriesType {
-  electronics: number;
-  accessories: number;
-  software: number;
-}
-
-interface InventoryType {
-  total: number;
-  categories: InventoryCategoriesType;
-}
+import StoreAddressModel from "./StoreAddressModel";
+import StoreInventoryModel from "./StoreInventoryModel";
 
 class StoreLocationModel {
   id: string;
-  address: AddressType;
-  inventory: InventoryType;
+  address: StoreAddressModel;
+  inventory: StoreInventoryModel;
 
-  constructor(id: string, address: AddressType, inventory: InventoryType) {
+  constructor(
+    id: string,
+    address: StoreAddressModel,
+    inventory: StoreInventoryModel
+  ) {
     this.id = id;
     this.address = address;
     this.inventory = inventory;
