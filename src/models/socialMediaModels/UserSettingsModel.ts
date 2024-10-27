@@ -18,6 +18,11 @@ class UserSettingsModel {
     this.privacy = privacy;
     this.notifications = notifications;
   }
+
+  updateUserSettings(privacy: PrivacyType, notifications: NotificationsType) {
+    this.privacy = privacy;
+    this.notifications = notifications;
+  }
 }
 
 export default UserSettingsModel;

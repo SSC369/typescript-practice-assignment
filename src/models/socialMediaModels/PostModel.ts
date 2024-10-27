@@ -1,14 +1,19 @@
-import PostMediaMetaDataModel from "./PostMediaMetaDataModel";
+import PostContentModel from "./PostContentModel";
+import PostEngagementModel from "./PostEngagementModel";
 
 class PostModel {
-  type: string;
-  url: string;
-  metadata: PostMediaMetaDataModel;
+  id: string;
+  content: PostContentModel;
+  engagement: PostEngagementModel;
 
-  constructor(type: string, url: string, metadata: PostMediaMetaDataModel) {
-    this.type = type;
-    this.url = url;
-    this.metadata = metadata;
+  constructor(
+    id: string,
+    content: PostContentModel,
+    engagement: PostEngagementModel
+  ) {
+    this.id = id;
+    this.content = content;
+    this.engagement = engagement;
   }
 }
 

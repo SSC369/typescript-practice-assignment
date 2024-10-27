@@ -87,6 +87,7 @@ const socialMediaPlatform = {
           text: "Hello World!",
           media: [
             {
+              id: "001",
               type: "image",
               url: "https://example.com/image1.jpg",
               metadata: {

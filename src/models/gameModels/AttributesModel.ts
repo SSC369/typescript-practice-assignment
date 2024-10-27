@@ -4,7 +4,7 @@ interface PhysicalType {
   constitution: number;
 }
 
-interface mentalType {
+interface MentalType {
   intelligence: number;
   wisdom: number;
   charisma: number;
@@ -12,9 +12,9 @@ interface mentalType {
 
 class AttributesModel {
   physical: PhysicalType;
-  mental: mentalType;
+  mental: MentalType;
 
-  constructor(physical: PhysicalType, mental: mentalType) {
+  constructor(physical: PhysicalType, mental: MentalType) {
     this.physical = physical;
     this.mental = mental;
   }
