@@ -14,7 +14,7 @@ const Users: React.FC = observer(() => {
 
   const fetchUserData: () => void = () => {
     try {
-      dataStore.setUsersData();
+      dataStore.setLeadDataStore();
     } catch (error) {}
   };
 

@@ -29,22 +29,17 @@ class DataStore {
     return this.isDataLoaded;
   }
 
-  setUsersData() {
+  setLeadDataStore() {
     this.isDataLoaded = false;
-    data.forEach((user) => {
-      const { leadId, name, stage } = user;
+
+    data.forEach((userData) => {
+      const { assignees, overviewFields, gofs, leadId, name, stage } = userData;
       this.users.set(leadId, {
         leadId,
         name,
         stage,
       });
-    });
-    this.isDataLoaded = true;
-  }
 
-  setLeadDataStore() {
-    data.forEach((userData) => {
-      const { assignees, overviewFields, gofs, leadId, name, stage } = userData;
       // get instances of assignees
       const assigneesInstancesMap = new Map();
       assignees.forEach((assignee) => {
@@ -93,7 +88,6 @@ class DataStore {
         )
       );
     });
-
     this.isDataLoaded = true;
   }
 

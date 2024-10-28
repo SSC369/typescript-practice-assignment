@@ -28,7 +28,6 @@ export const UserContextProvider: React.FC<UserContextProviderProps> = observer(
     }, [leadId]);
 
     const fetchData: () => void = () => {
-      dataStore.setDataLoading(false);
       dataStore.setLeadDataStore();
     };
 
