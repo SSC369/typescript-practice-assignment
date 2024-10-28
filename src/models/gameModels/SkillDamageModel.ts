@@ -11,6 +11,11 @@ class SkillDamageModel {
     this.base = base;
     this.scaling = scaling;
   }
+
+  updateSkillDamage(base: number, scaling: ScalingType) {
+    this.base = base;
+    this.scaling = scaling;
+  }
 }
 
 export default SkillDamageModel;

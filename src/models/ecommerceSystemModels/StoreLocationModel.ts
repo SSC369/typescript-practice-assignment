@@ -15,6 +15,17 @@ class StoreLocationModel {
     this.address = address;
     this.inventory = inventory;
   }
+
+  updateStoreLocation(
+    addressObject: StoreAddressModel,
+    inventoryObject: StoreInventoryModel
+  ) {
+    const { street, city, state, zipCode, coordinates } = addressObject;
+    addressObject.updateStoreAddress(street, city, state, zipCode, coordinates);
+
+    const { total, categories } = inventoryObject;
+    inventoryObject.updateStoreInventory(total, categories);
+  }
 }
 
 export default StoreLocationModel;

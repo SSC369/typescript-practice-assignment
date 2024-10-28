@@ -15,6 +15,25 @@ class EcommerceSystemModel {
     this.products = products;
   }
 
+  addProduct(products: ProductModel[]) {
+    products.forEach((product) => {
+      const { id, name, category, price, specifications, inventory } = product;
+      this.products.push(
+        new ProductModel(id, name, category, price, specifications, inventory)
+      );
+    });
+  }
+
+  removeProduct(id: string) {
+    this.products = this.products.filter((product) => product.id !== id);
+  }
+
+  updateEcommerceSystem(store: StoreModel, products: ProductModel[]) {
+    const { name, locations } = store;
+    store.updateStore(name, locations);
+    this.products = products;
+  }
+
   getStoreLocations(locations: StoreLocationModel[]): StoreLocationModel[] {
     const storeLocationInstances = locations.map((location) => {
       const { id, address, inventory } = location;

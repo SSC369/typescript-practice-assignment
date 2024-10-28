@@ -1,3 +1,5 @@
+import PostContentModel from "./PostContentModel";
+import PostEngagementModel from "./PostEngagementModel";
 import PostsModel from "./PostModel";
 import UserProfileModel from "./UserProfileModel";
 
@@ -19,9 +21,21 @@ class UserModel {
       posts: this.posts,
     };
   }
+  addPost(
+    id: string,
+    content: PostContentModel,
+    engagement: PostEngagementModel
+  ) {
+    this.posts.push(new PostsModel(id, content, engagement));
+  }
 
   deletePost(id: string) {
     this.posts = this.posts.filter((post) => post.id !== id);
+  }
+
+  updatePost(profile: UserProfileModel, posts: PostsModel[]) {
+    this.profile = profile;
+    this.posts = posts;
   }
 }
 

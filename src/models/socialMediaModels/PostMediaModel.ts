@@ -18,15 +18,14 @@ class PostMediaModel {
     this.metadata = metadata;
   }
 
-  replacePostMediaData(
+  updatePostMediaData(
     type: string,
     url: string,
     metadata: PostMediaMetaDataModel
   ) {
     this.type = type;
     this.url = url;
-    const { size, dimensions } = metadata;
-    this.metadata.updateMetaData(size, dimensions);
+    this.metadata = metadata;
   }
 
   get postMedia() {

@@ -10,6 +10,12 @@ class WeaponModel {
     this.name = name;
     this.stats = stats;
   }
+
+  updateWeapon(name: string, stats: WeaponStatsModel) {
+    this.name = name;
+    const { damage, durability, effects } = stats;
+    stats.updateWeaponStats(damage, durability, effects);
+  }
 }
 
 export default WeaponModel;

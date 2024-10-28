@@ -7,6 +7,12 @@ class InventoryItemEffectModel {
     this.value = value;
     this.duration = duration;
   }
+
+  updateInventoryItemEffect(type: string, value: number, duration: string) {
+    this.type = type;
+    this.value = value;
+    this.duration = duration;
+  }
 }
 
 export default InventoryItemEffectModel;

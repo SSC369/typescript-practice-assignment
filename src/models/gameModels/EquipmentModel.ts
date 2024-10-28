@@ -9,6 +9,14 @@ class EquipmentModel {
     this.weapon = weapon;
     this.armor = armor;
   }
+
+  updateEquipment(weapon: WeaponModel, armor: ArmorModel) {
+    const { name, stats } = weapon;
+    weapon.updateWeapon(name, stats);
+
+    const { head, chest, legs } = armor;
+    armor.updateArmor(head, chest, legs);
+  }
 }
 
 export default EquipmentModel;

@@ -3,7 +3,6 @@ interface PrivacyType {
   showEmail: boolean;
   showPhone: boolean;
 }
-
 interface NotificationsType {
   email: boolean;
   push: boolean;
@@ -13,7 +12,6 @@ interface NotificationsType {
 class UserSettingsModel {
   privacy: PrivacyType;
   notifications: NotificationsType;
-
   constructor(privacy: PrivacyType, notifications: NotificationsType) {
     this.privacy = privacy;
     this.notifications = notifications;

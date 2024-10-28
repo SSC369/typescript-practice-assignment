@@ -8,23 +8,18 @@ class PostContentModel {
     this.media = media;
   }
 
-  updatePostText(text: string) {
+  updatePostContent(text: string, media: PostMediaModel[]) {
     this.text = text;
+    this.media = media;
   }
 
-  deletePostMedia(mediaIds: string[]) {
-    const filteredMediaInstances = this.media.filter((data) => {
-      if (!mediaIds.includes(data.id)) {
-        return data;
-      }
-    });
-    this.media = filteredMediaInstances;
+  deletePostMedia(id: string) {
+    this.media = this.media.filter((data) => data.id !== id);
   }
 
   addPostMedia(mediadata: PostMediaModel[]) {
     mediadata.forEach((media) => {
-      const { id, type, url, metadata } = media;
-      this.media.push(new PostMediaModel(id, type, url, metadata));
+      this.media.push(media);
     });
   }
 

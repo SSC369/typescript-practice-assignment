@@ -18,6 +18,11 @@ class AttributesModel {
     this.physical = physical;
     this.mental = mental;
   }
+
+  updateAttributes(physical: PhysicalType, mental: MentalType) {
+    this.physical = physical;
+    this.mental = mental;
+  }
 }
 
 export default AttributesModel;

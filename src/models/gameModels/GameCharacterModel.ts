@@ -12,7 +12,7 @@ import WeaponStatsModel from "./WeaponStatsModel";
 
 interface BasicType {
   name: string;
-  class: string;
+  className: string;
   level: number;
   experience: number;
 }
@@ -39,6 +39,58 @@ class GameCharacterModel {
     this.equipment = equipment;
     this.inventory = inventory;
     this.skills = skills;
+  }
+
+  updateGameCharacter(
+    basic: BasicType,
+    attributes: AttributesModel,
+    equipment: EquipmentModel,
+    inventory: InventoryModel,
+    skills: GameSkillModel[]
+  ) {
+    skills.forEach((skill) => {
+      const { name, level, damage, cooldown } = skill;
+      skill.updateGameSkill(name, level, damage, cooldown);
+    });
+    const { capacity, currentWeight, items } = inventory;
+    inventory.updateInventory(capacity, currentWeight, items);
+
+    const { weapon, armor } = equipment;
+    equipment.updateEquipment(weapon, armor);
+
+    const { mental, physical } = attributes;
+    attributes.updateAttributes(physical, mental);
+
+    const { name, className, level, experience } = basic;
+    this.updateBasicData(name, className, level, experience);
+  }
+
+  updateBasicData(
+    name: string,
+    className: string,
+    level: number,
+    experience: number
+  ) {
+    this.basic = {
+      name,
+      className,
+      level,
+      experience,
+    };
+  }
+
+  addSkill(
+    id: string,
+    name: string,
+    level: number,
+    damage: SkillDamageModel,
+    cooldown: string
+  ) {
+    this.skills.push(new GameSkillModel(id, name, level, damage, cooldown));
+  }
+
+  removeSkill(id: string) {
+    this.skills = this.skills.filter((skill) => skill.id !== id);
   }
 
   getAttributes(attributes: AttributesModel) {

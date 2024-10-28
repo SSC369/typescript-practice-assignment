@@ -19,16 +19,22 @@ class PostEngagementModel {
     };
   }
 
-  updatePostEngagement(likes: number, shares: number, comment: CommentModel) {
+  updatePostEngagement(
+    likes: number,
+    shares: number,
+    comments: CommentModel[]
+  ) {
     this.likes = likes;
     this.shares = shares;
-    const { id, user, text, timestamp, replies } = comment;
-    const commentInstance = this.comments.find((comment) => comment.id === id)!;
-    commentInstance.updateComment(user, text, timestamp, replies);
+    this.comments = comments;
   }
 
   deleteComment(commentId: string) {
     this.comments = this.comments.filter((comment) => comment.id !== commentId);
+  }
+
+  addComment(comment: CommentModel) {
+    this.comments.push(comment);
   }
 }
 

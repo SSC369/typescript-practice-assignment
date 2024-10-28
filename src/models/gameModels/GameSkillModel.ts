@@ -20,6 +20,19 @@ class GameSkillModel {
     this.damage = damage;
     this.cooldown = cooldown;
   }
+
+  updateGameSkill(
+    name: string,
+    level: number,
+    damage: SkillDamageModel,
+    cooldown: string
+  ) {
+    this.name = name;
+    this.level = level;
+    this.cooldown = cooldown;
+    const { base, scaling } = damage;
+    damage.updateSkillDamage(base, scaling);
+  }
 }
 
 export default GameSkillModel;
