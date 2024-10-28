@@ -11,6 +11,7 @@ import HistoryLog from "./pages/HistoryLog";
 import Users from "./pages/Users";
 import { UserContextProvider } from "./context/userContext";
 import { LeadTabsNavigateEnum, NavigationRoutesEnum } from "./types";
+import { Toaster } from "react-hot-toast";
 
 const App: React.FC = () => {
   return (
@@ -48,6 +49,7 @@ const App: React.FC = () => {
         </Route>
         <Route path={NavigationRoutesEnum.usersPagePath} element={<Users />} />
       </Routes>
+      <Toaster position="top-center" reverseOrder={true} />
     </BrowserRouter>
   );
 };

@@ -25,7 +25,7 @@ const LeadDetails: React.FC = observer(() => {
     <div className="max-h-[74dvh] overflow-auto custom-scrollbar">
       <div className="flex items-center gap-4 mt-2">
         <h1 className="text-lg text-slate-600 font-semibold">Lead Details</h1>
-        <hr className="text-slate-600 flex-grow h-2" />
+        <hr className="text-slate-600 flex-grow h-2 mt-2" />
       </div>
       {renderGofs()}
     </div>
