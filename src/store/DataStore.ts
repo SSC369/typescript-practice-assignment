@@ -11,16 +11,26 @@ import { UserType } from "../types";
 class DataStore {
   leadDataStore: Map<string, LeadDataModel> = new Map();
   users: Map<string, UserType> = new Map();
+  isDataLoaded: boolean = false;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
+  }
+
+  setDataLoading(value: boolean) {
+    this.isDataLoaded = value;
   }
 
   get getUsersData() {
     return this.users;
   }
 
+  get dataLoading(): boolean {
+    return this.isDataLoaded;
+  }
+
   setUsersData() {
+    this.isDataLoaded = false;
     data.forEach((user) => {
       const { leadId, name, stage } = user;
       this.users.set(leadId, {
@@ -29,12 +39,12 @@ class DataStore {
         stage,
       });
     });
+    this.isDataLoaded = true;
   }
 
   setLeadDataStore() {
     data.forEach((userData) => {
       const { assignees, overviewFields, gofs, leadId, name, stage } = userData;
-
       // get instances of assignees
       const assigneesInstancesMap = new Map();
       assignees.forEach((assignee) => {
@@ -83,6 +93,8 @@ class DataStore {
         )
       );
     });
+
+    this.isDataLoaded = true;
   }
 
   getLeadData() {

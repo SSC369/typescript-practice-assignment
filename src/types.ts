@@ -122,7 +122,7 @@ interface UserContextType {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   userData: LeadDataModel;
-  fetchData: () => Promise<void>;
+  fetchData: () => void;
 }
 
 // Define the provider props (with children)

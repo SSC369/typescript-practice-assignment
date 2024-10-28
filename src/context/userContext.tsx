@@ -10,57 +10,56 @@ import {
 import dataStore from "../store/DataStore";
 import LeadDataModel from "../models/LeadDataModel";
 import Loader from "../components/Loader";
+import { observer } from "mobx-react-lite";
 
 export const UserContext = createContext<UserContextType | null>(null);
 
-export const UserContextProvider: React.FC<UserContextProviderProps> = ({
-  children,
-}) => {
-  const [activeTab, setActiveTab] = useState<string>(LeadTabsEnum.leadDetails);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const leadId: string = useParams().leadId!;
+export const UserContextProvider: React.FC<UserContextProviderProps> = observer(
+  ({ children }) => {
+    const [activeTab, setActiveTab] = useState<string>(
+      LeadTabsEnum.leadDetails
+    );
+    const leadId: string = useParams().leadId!;
 
-  useEffect(() => {
-    if (leadId) {
-      fetchData();
+    useEffect(() => {
+      if (leadId) {
+        fetchData();
+      }
+    }, [leadId]);
+
+    const fetchData: () => void = () => {
+      dataStore.setDataLoading(false);
+      dataStore.setLeadDataStore();
+    };
+
+    if (!dataStore.dataLoading) {
+      return (
+        <div className="min-h-dvh flex items-center justify-center">
+          <Loader />
+        </div>
+      );
     }
-  }, [leadId]);
 
-  const fetchData: () => Promise<void> = async () => {
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    dataStore.setLeadDataStore();
+    if (dataStore.dataLoading) {
+      const leadDataMap: Map<string, LeadDataModel> = dataStore.getLeadData();
+      let userData: LeadDataModel = leadDataMap.get(leadId)!;
+      const { name, stage } = userData;
+      const headerData: HeaderData = { leadId: userData.leadId, name, stage };
+      return (
+        <UserContext.Provider
+          value={{
+            headerData,
+            activeTab,
+            setActiveTab,
+            userData,
+            fetchData,
+          }}
+        >
+          {children}
+        </UserContext.Provider>
+      );
+    }
 
-    setIsLoading(false);
-  };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-dvh flex items-center justify-center">
-        <Loader />
-      </div>
-    );
+    return null;
   }
-
-  if (!isLoading) {
-    const leadDataMap: Map<string, LeadDataModel> = dataStore.getLeadData();
-    let userData: LeadDataModel = leadDataMap.get(leadId)!;
-    const { name, stage } = userData;
-    const headerData: HeaderData = { leadId: userData.leadId, name, stage };
-    return (
-      <UserContext.Provider
-        value={{
-          headerData,
-          activeTab,
-          setActiveTab,
-          userData,
-          fetchData,
-        }}
-      >
-        {children}
-      </UserContext.Provider>
-    );
-  }
-
-  return null;
-};
+);

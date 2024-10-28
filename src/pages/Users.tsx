@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { FaChevronDown } from "react-icons/fa";
 import { observer } from "mobx-react-lite";
@@ -10,15 +10,11 @@ import dataStore from "../store/DataStore";
 import Loader from "../components/Loader";
 
 const Users: React.FC = observer(() => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate: NavigateFunction = useNavigate();
 
-  const fetchUserData: () => Promise<void> = async () => {
+  const fetchUserData: () => void = () => {
     try {
-      setIsLoading(true);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
       dataStore.setUsersData();
-      setIsLoading(false);
     } catch (error) {}
   };
 
@@ -78,7 +74,7 @@ const Users: React.FC = observer(() => {
     );
   };
 
-  if (isLoading) {
+  if (!dataStore.dataLoading) {
     return (
       <div className="flex items-center justify-center h-dvh">
         <Loader />
