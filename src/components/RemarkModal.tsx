@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { VoidFunctionType } from "../types";
-import remarkStoreObject from "../store/RemarkStore";
 import { v4 } from "uuid";
 import toast from "react-hot-toast";
 
-interface RemarkModalPropsTypes {
-  close: VoidFunctionType;
-}
+import {
+  ReactFunctionType,
+  RemarkFormData,
+  RemarkModalPropsTypes,
+  VoidFunctionType,
+} from "../types";
+import remarkStoreObject from "../store/RemarkStore";
 
-interface RemarkFormData {
-  title: string;
-  description: string;
-}
 const RemarkModal: React.FC<RemarkModalPropsTypes> = ({ close }) => {
   const [formData, setFormData] = useState<RemarkFormData>({
     title: "",
@@ -42,23 +40,48 @@ const RemarkModal: React.FC<RemarkModalPropsTypes> = ({ close }) => {
       const addedBy = "ssc";
       const content = { title, description };
       const createdAt = new Date();
-      const { status, message } = remarkStoreObject.addRemark(
-        remarkId,
-        content,
-        addedBy,
-        createdAt
-      )!;
-      if (status) {
-        toast.success(message);
-      }
+      remarkStoreObject.addRemark(remarkId, content, addedBy, createdAt);
       handleModalClose();
     }
   };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  ): void => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const renderAddRemarkForm: ReactFunctionType = () => {
+    return (
+      <form onSubmit={handleRemarkSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-1">
+          <label className="text-slate-600">Title</label>
+          <input
+            onChange={handleInputChange}
+            value={formData.title}
+            className="p-3 rounded-xl outline-none"
+            name="title"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-slate-600">Description</label>
+          <textarea
+            onChange={handleInputChange}
+            name="description"
+            value={formData.description}
+            className="p-3 rounded-xl outline-none resize-none"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="bg-sky text-sky p-2 rounded-xl self-center text-sm px-4 font-medium"
+        >
+          Submit
+        </button>
+      </form>
+    );
   };
 
   return (
@@ -68,38 +91,11 @@ const RemarkModal: React.FC<RemarkModalPropsTypes> = ({ close }) => {
           Add Remark
         </h1>
 
-        <button onClick={handleModalClose} className="absolute top-4 right-10">
+        <button onClick={handleModalClose} className="absolute top-4 right-4">
           <IoClose />
         </button>
 
-        <form onSubmit={handleRemarkSubmit} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <label className="text-slate-600">Title</label>
-            <input
-              onChange={handleInputChange}
-              value={formData.title}
-              className="p-3 rounded-xl outline-none"
-              name="title"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-slate-600">Description</label>
-            <textarea
-              onChange={handleInputChange}
-              name="description"
-              value={formData.description}
-              className="p-3 rounded-xl outline-none resize-none"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="bg-sky text-sky p-2 rounded-xl self-center text-sm px-4 font-medium"
-          >
-            Submit
-          </button>
-        </form>
+        {renderAddRemarkForm()}
       </div>
     </div>
   );

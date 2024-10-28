@@ -25,16 +25,9 @@ class RemarkModel {
     return this.content;
   }
 
-  updateRemark(content: RemarkContentType, createdAt: Date) {
-    try {
-      this.content = content;
-      this.createdAt = createdAt;
-      return { status: true, message: "Remark Updated" };
-    } catch (error) {
-      if (error instanceof Error) {
-        return { status: false, message: error.message };
-      }
-    }
+  updateRemark(content: RemarkContentType, createdAt: Date): void {
+    this.content = content;
+    this.createdAt = createdAt;
   }
 }
 

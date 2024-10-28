@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { ReactFunctionType, VoidFunctionType } from "../types";
 import toast from "react-hot-toast";
-import RemarkModel from "../models/RemarkModel";
 
-interface RemarkModalPropsTypes {
-  close: VoidFunctionType;
-  remarkObject: RemarkModel;
-}
-const EditRemarkModal: React.FC<RemarkModalPropsTypes> = ({
+import {
+  ReactFunctionType,
+  RemarkEditModalPropsTypes,
+  RemarkFormData,
+  VoidFunctionType,
+} from "../types";
+
+const EditRemarkModal: React.FC<RemarkEditModalPropsTypes> = ({
   close,
   remarkObject,
 }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RemarkFormData>({
     title: remarkObject.remarkContent.title,
     description: remarkObject.remarkContent.description,
   });
@@ -41,13 +42,7 @@ const EditRemarkModal: React.FC<RemarkModalPropsTypes> = ({
         title,
         description,
       };
-      const response: { status: boolean; message: string } =
-        remarkObject.updateRemark(content, new Date())!;
-      if (response.status) {
-        toast.success(response.message);
-      } else {
-        toast.error(response.message);
-      }
+      remarkObject.updateRemark(content, new Date());
       close();
     }
   };
@@ -92,13 +87,13 @@ const EditRemarkModal: React.FC<RemarkModalPropsTypes> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center  bg-black bg-opacity-60">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
       <div className="flex relative flex-col justify-center rounded-xl  bg-slate-100 gap-4 px-4 py-6 w-1/3">
         <h1 className="text-center font-medium text-xl text-slate-800">
           Edit Remark
         </h1>
 
-        <button onClick={handleModalClose} className="absolute top-4 right-10">
+        <button onClick={handleModalClose} className="absolute top-4 right-4">
           <IoClose />
         </button>
 

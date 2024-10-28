@@ -2,6 +2,7 @@ import React from "react";
 import LeadDataModel from "./models/LeadDataModel";
 import GofModel from "./models/GofModel";
 import FieldModel from "./models/FieldModel";
+import RemarkModel from "./models/RemarkModel";
 
 // Field Types Enum
 export enum FieldTypesEnum {
@@ -159,6 +160,30 @@ interface UserType {
 
 type VoidFunctionType = () => void;
 
+interface RemarkItemProps {
+  remark: RemarkModel;
+  handleRemarkEdit: (remarkObject: RemarkModel) => void;
+}
+
+interface RemarkModalPropsTypes {
+  close: VoidFunctionType;
+}
+
+interface RemarkFormData {
+  title: string;
+  description: string;
+}
+
+interface RemarkEditModalPropsTypes {
+  close: VoidFunctionType;
+  remarkObject: RemarkModel;
+}
+
+interface ConfirmModalProps {
+  onClose: () => void;
+  actionHandler: () => void;
+}
+
 export type {
   HeaderOptionPropsType,
   VoidFunctionType,
@@ -184,4 +209,9 @@ export type {
   ReactFunctionType,
   FieldValueType,
   UserType,
+  RemarkItemProps,
+  RemarkEditModalPropsTypes,
+  RemarkFormData,
+  RemarkModalPropsTypes,
+  ConfirmModalProps,
 };

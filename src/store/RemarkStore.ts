@@ -13,23 +13,16 @@ class RemarkStore {
     content: RemarkContentType,
     addedBy: string,
     createdAt: Date
-  ) {
-    try {
-      const newRemark = new RemarkModel(remarkId, content, addedBy, createdAt);
-      this.remarks.push(newRemark);
-      return { status: true, message: "Remark is added" };
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        return { status: false, message: error.message };
-      }
-    }
+  ): void {
+    const newRemark = new RemarkModel(remarkId, content, addedBy, createdAt);
+    this.remarks.push(newRemark);
   }
 
-  removeRemark(id: string) {
+  removeRemark(id: string): void {
     this.remarks = this.remarks.filter((remark) => remark.remarkId !== id);
   }
 
-  getRemarks() {
+  getRemarks(): RemarkModel[] {
     return this.remarks;
   }
 }
