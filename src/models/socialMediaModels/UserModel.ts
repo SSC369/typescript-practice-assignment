@@ -33,7 +33,7 @@ class UserModel {
     this.posts = this.posts.filter((post) => post.id !== id);
   }
 
-  updatePost(profile: UserProfileModel, posts: PostsModel[]) {
+  updateUser(profile: UserProfileModel, posts: PostsModel[]) {
     this.profile = profile;
     this.posts = posts;
   }

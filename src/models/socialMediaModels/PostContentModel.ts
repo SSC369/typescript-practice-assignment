@@ -19,7 +19,8 @@ class PostContentModel {
 
   addPostMedia(mediadata: PostMediaModel[]) {
     mediadata.forEach((media) => {
-      this.media.push(media);
+      const { id, type, url, metadata } = media;
+      this.media.push(new PostMediaModel(id, type, url, metadata));
     });
   }
 

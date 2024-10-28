@@ -41,9 +41,7 @@ class ProductSpecificationModel {
   }
 
   deleteFeature(feature: string) {
-    if (this.features.includes(feature)) {
-      this.features.filter((eachFeature) => eachFeature !== feature);
-    }
+    this.features.filter((eachFeature) => eachFeature !== feature);
   }
 }
 

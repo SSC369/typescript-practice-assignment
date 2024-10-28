@@ -15,6 +15,11 @@ class PostModel {
     this.content = content;
     this.engagement = engagement;
   }
+
+  updatePost(content: PostContentModel, engagement: PostEngagementModel) {
+    this.content = content;
+    this.engagement = engagement;
+  }
 }
 
 export default PostModel;

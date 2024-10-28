@@ -16,6 +16,11 @@ class UsersModel {
     this.user = user;
   }
 
+  updateUser(user: UserModel) {
+    const { profile, posts } = user;
+    user.updateUser(profile, posts);
+  }
+
   getPostContent(content: PostContentModel): PostContentModel {
     const { text, media } = content;
     const postMediaInstances = media.map((data) => {
