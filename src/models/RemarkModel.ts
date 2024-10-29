@@ -1,3 +1,5 @@
+import { makeAutoObservable } from "mobx";
+
 export interface RemarkContentType {
   title: string;
   description: string;
@@ -15,6 +17,7 @@ class RemarkModel {
     addedBy: string,
     createdAt: Date
   ) {
+    makeAutoObservable(this, {}, { autoBind: true });
     this.remarkId = remarkId;
     this.content = content;
     this.addedBy = addedBy;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { v4 } from "uuid";
 import toast from "react-hot-toast";
@@ -16,8 +16,15 @@ const RemarkModal: React.FC<RemarkModalPropsTypes> = ({ close }) => {
     title: "",
     description: "",
   });
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
   const handleModalClose: VoidFunctionType = () => {
-    close();
+    setIsVisible(false);
+    setTimeout(() => {
+      close();
+    }, 300);
   };
 
   const validateRemarkFormData: () => boolean = () => {
@@ -85,8 +92,16 @@ const RemarkModal: React.FC<RemarkModalPropsTypes> = ({ close }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center  bg-black bg-opacity-60">
-      <div className="flex relative flex-col justify-center rounded-xl  bg-slate-100 gap-4 px-4 py-6 w-1/3">
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center  bg-black bg-opacity-60 transition-opacity duration-300 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <div
+        className={`flex relative flex-col justify-center rounded-xl  bg-slate-100 gap-4 px-4 py-6 w-1/3 transform transition-transform duration-300 ${
+          isVisible ? "scale-100" : "scale-90"
+        }`}
+      >
         <h1 className="text-center font-medium text-xl text-slate-800">
           Add Remark
         </h1>
